@@ -1,0 +1,475 @@
+---
+output: html_document
+---
+--- 
+title_meta  : Chương 1
+title       : Giới thiệu căn bản về R
+description : "Trong chương này, chúng ta sẽ bắt đầu tìm hiểu về R. Bạn sẽ được học cách sử dụng màn hình tương tác (console) để tính toán, cũng như là cách gán biến. Thêm vào đó, bạn sẽ làm quen với các loại dữ liệu cơ bản trong R. Ta cùng bắt đầu nào!"
+
+--- type:NormalExercise xp:100 skills:1 key:15d729634a
+## Cách học trên DataCamp
+
+Bạn gõ các đoạn lệnh R vào trình soạn thảo (editor) phía tay phải để giải các bài tập. Sau khi bạn nhấp chuột vào nút "Submit Answer", R sẽ dịch và xử lý từng dòng lệnh, sau đó thông báo cho bạn biết mình làm đúng hay sai. Kết quả của câu lệnh của bạn sẽ được hiển thị tại bảng điều khiển ở góc dưới bên phải. 
+
+Ký tự `#` được dùng để thêm chú thích trong R, nhờ thế mà bạn và người khác hiểu được ý nghĩa của câu lệnh R bạn viết. R sẽ bỏ qua và không xử lý các chú thích này, nên kết quả của câu lệnh sẽ không bị thay đổi. Ví dụ, _Tính 3 + 4_ trong editor ở phải được coi là một chú thích.
+
+Bạn cũng có thể thực hiện các câu lệnh R ngay trong console. Bạn có thể dùng cách này để thử kết quả câu lệnh, do trình duyệt sẽ không bắt lỗi bạn tại đây.
+
+*** =instructions
+- Trong trình soạn thảo bên phải đã có sẵn đoạn lệnh mẫu. Bạn có phân biệt được dòng nào là câu lệnh R và dòng nào là các câu chú thích không?
+- Thêm một dòng lệnh để tính tổng của 6 và 12, rồi nhấp chuột vào nút "Submit Answer". 
+
+*** =hint
+Hãy thêm dòng lệnh R để tính tổng của 6 và 12, giống như ví dụ đã cho trong đoạn lệnh mẫu.
+
+*** =pre_exercise_code
+```{r}
+# no pec
+```
+
+*** =sample_code
+```{r}
+# Tính 3 + 4
+3 + 4
+
+# Tính 6 + 12
+
+```
+
+*** =solution
+```{r}
+# Tính 3 + 4
+3 + 4
+
+# Tính 6 + 12
+6 + 12
+```
+
+*** =sct
+```{r}
+test_output_contains("18", incorrect_msg = "Bạn cần thêm `6 + 12` trên một dòng lệnh mới. Đừng bắt đầu dòng lệnh với `#`, câu lệnh của bạn sẽ không được R xử lý đâu!")
+success_msg("Tuyệt vời! Bạn đã thấy kết quả của đoạn lệnh trên console chưa? Giờ thì bạn đã làm quen với trình duyệt, ta cùng học thêm về R nhé!")
+```
+
+--- type:NormalExercise xp:100 skills:1 key:720745eda5
+## Dùng R để làm phép tính
+
+Ở mức cơ bản nhất, bạn có thể dùng R như một máy tính đơn giản. Hãy xem những dấu tính như sau:
+
+- Cộng: `+`
+- Trừ: `-`
+- Nhân: `*`
+- Chia: `/`
+- Lấy lũy thừa: `^`
+- Lấy số dư: `%%`
+
+Hai dấu tính cuối cùng có thể giải thích như sau:
+- Dấu tính `^` đưa số bên trái bên trái lên lũy thừa bậc số bên phải của nó, ví dụ `3^2`bằng 9.
+- Dấu tính `%%` trả lại phần dư của phép tính chia của số bên trái cho số bên phải của nó, ví dụ `5 %% 3` bằng 2.
+
+Với kiến thức trên, bạn hãy dựa vào hướng dẫn dưới dây để hoàn thành bài tập này.
+
+*** =instructions
+- Gõ `2^5` trong trình soạn thảo để tính lũy thừa bậc 5 của 2.
+- Gõ `28 %% 6` để tính số dư của phép chia 28 cho 6.
+- Nhấn nút "Gửi Kết quả" và xem kết quả của R trong console.
+- Chú ý là dấy `#` được dùng để thêm bình luận trong đọa lệnh R.
+
+*** =hint
+Một ví dụ khác của dấu tính số dư: `9 %% 2` bằng `1`.
+
+*** =pre_exercise_code
+```{r}
+# no pec
+```
+
+*** =sample_code
+```{r}
+# Một phép cộng
+5 + 5 
+
+# Một phép trừ
+5 - 5 
+
+# Một phép nhân
+3 * 5
+
+ # Một phép chia
+(5 + 5) / 2 
+
+# Lấy lũy thừa
+
+
+# Lấy số dư
+
+```
+
+*** =solution
+```{r}
+# Một phép cộng
+5 + 5
+
+# Một phép trừ
+5 - 5 
+
+# Một phép nhân
+3 * 5
+
+ # Một phép chia
+(5 + 5) / 2 
+
+# Lấy lũy thừa
+2 ^ 5
+
+# Lấy số dư
+28 %% 6
+```
+
+*** =sct
+```{r}
+msg = "Xin đừng xóa các phép tính mẫu khác!"
+test_output_contains("2^5", incorrect_msg = "Phép lấy lũy thừa chưa chính xác. Hãy viết `2 ^ 5` trên một dòng mới.")
+test_output_contains("28 %% 6", incorrect_msg = "Write Phép lấy số dư có vẻ chưa đúng. Hãy viết `28 %% 6` trên một dòng mới.")
+success_msg("Tuyệt vời! Hãy sang bài tập tiếp theo.")
+```
+
+
+--- type:NormalExercise xp:100 skills:1 key:5f200ffd43
+## Bài tập về biến 
+
+Một trong những khái niệm cơ bản trong lập trình thống kê là khái niệm **biến**. 
+
+Bạn có thể sử dụng một biến để chứa một giá trị (ví dụ:  4) hoặc một đối tượng (ví dụ như mô tả của một hàm số) trong R. Sau đó, nếu muốn sử dụng giá trị hoặc đối tượng này, bạn chỉ cần gọi tên của biến đó.
+
+Bạn có thể gán giá trị  4 cho biến `my_var`với câu lệnh
+
+```
+my_var <- 4
+```
+
+*** =instructions
+Đến lượt bạn rồi đấy: hãy viết tiếp câu lệnh trong editor để gán giá trị 42 cho biến `x` . Nhấn nút Submit Answer'. Khi bạn yêu cầu R hiển thị giá trị của `x`, bạn sẽ nhận được giá trị 42.
+
+*** =hint
+Trong phần luyện tập chúng ta đã gán giá trị 4 cho `my_variable`. Bắt chước giống hệt vậy trong editor, chỉ thay đổi ở việc gán giá trị 42 cho biến `x`.
+
+*** =pre_exercise_code
+```{r}
+# no pec
+```
+
+*** =sample_code
+```{r}
+# Gán giá trị 42 cho x
+x <- 
+
+# In giá trị của biến x
+x
+```
+
+*** =solution
+```{r}
+# Gán giá trị 42 cho x
+x <- 42
+
+# In giá trị của biến x
+x
+```
+
+*** =sct
+```{r}
+test_object("x", undefined_msg = "Bạn cần định nghĩa `x`.",
+            incorrect_msg = "Nhớ gán đúng giá trị cho `x`.") 
+success_msg("Làm tốt lắm! Bạn có để ý thấy R không hiển thị giá trị của biến cho console trong bài tập vừa rồi? `x <- 42` không cho kết quả gì cả, bởi vì R đã mặc định rằng bạn không cần biến này ngay. Nếu không thì bạn cũng chẳng gán giá trị cho một biến làm gì, đúng không? Sang bài tập tiếp theo nhé!")
+```
+
+
+--- type:NormalExercise xp:100 skills:1 key:c5944b90eb
+## Bài tập về biến (2)
+
+Giả dụ bạn có một cái làn hoa quả trong đó có 5 quả táo. Với vai trò một học viên phân tích số liệu, bạn muốn gán số lượng táo trong một biến tên là `my_apples`. 
+
+*** =instructions
+- Gõ đoạn lệnh sau đây vào trình soạn thảo: `my_apples <- 5`. `my_apples` sẽ được gán giá trị là 5.
+- Gõ: `my_apples` dưới câu bình luận thứ hai để in ra giá trị của `my_apples`.
+- Nhấn nút 'Submit Answer', và theo dõi trong console. Bạn sẽ thấy số 5 được hiển thị. Điều này chứng tỏ R đã gắn biến `my_apples` cho giá trị 5.
+
+*** =hint
+Hãy nhớ là nếu muốn gán một số hay một đối tượng cho một biến trong R, bạn cần dùng dấu gán `<-`. Ngoài ra bạn cũng có thể dùng `=`, nhưng `<-` vẫn được người ta sử dụng thường xuyên hơn.
+
+*** =pre_exercise_code
+```{r}
+# no pec
+```
+
+*** =sample_code
+```{r}
+# Gán giá trị 5 cho biến my_apples
+
+
+# In ra giá trị của biến my_apples
+
+```
+
+*** =solution
+```{r}
+# Gán giá trị 5 cho biến my_apples
+my_apples <- 5
+
+# In ra giá trị của biến my_apples
+my_apples
+```
+
+*** =sct
+```{r}
+test_object("my_apples", 
+            undefined_msg = "Hãy định nghĩa `my_apples`.",
+            incorrect_msg = "Hãy gán đúng giá trị cho biến `my_apples`.")
+test_output_contains("my_apples", incorrect_msg = "Bạn đã bảo R in biến `my_apples` ra console chưa?")
+success_msg("Tuyệt! Sang bài tập tiếp theo!")
+```
+
+
+--- type:NormalExercise xp:100 skills:1 key:1c1bd25045
+## Bài tập về biến (3)
+
+Giỏ hoa quả ngon nào cũng phải có cam, nên bạn quyết định thêm 6 quả cam. Là một chuyên viên phân tích số liệu, phản xạ tức thì của bạn là tạo một biến tên là `my_oranges` và gán giá trị 6 cho biến này. Tiếp đến, bạn muốn tính tổng số hoa quả bạn có. Vì bạn đã đặt tên cho các giá trị này, bạn có thể tự tin viết câu lệnh:
+
+```
+my_apples + my_oranges
+```
+
+*** =instructions
+- Gán giá trị 6 cho biến `my_oranges`.
+- Cộng hai biến `my_apples` và `my_oranges`, sau đó bảo R in ra kết quả.
+- Gán kết quả tính toán của phép tính cộng `my_apples` và `my_oranges` cho một biến mới là `my_fruit`.
+
+*** =hint
+`my_fruit` là tổng của `my_apples` và `my_oranges`. Dùng dấu `+` để cộng tổng của 2 biến đó, sau đó dùng dấu `<-` để gán kết quả cuối cùng cho `my_fruit`.
+
+*** =pre_exercise_code
+```{r}
+# no pec
+```
+
+*** =sample_code
+```{r}
+# Gán các giá trị đúng cho biến my_apples và my_oranges
+my_apples <- 5
+
+
+# Cộng tổng 2 biến
+
+
+# Tạo biến my_fruit
+
+```
+
+*** =solution
+```{r}
+# Gán các giá trị đúng cho biến my_apples và my_orange
+my_apples  <- 5
+my_oranges <- 6
+
+# Cộng tổng 2 biến
+my_apples + my_oranges
+
+# Tạo biến my_fruit
+my_fruit <- my_apples + my_oranges
+```
+
+*** =sct
+```{r}
+test_object("my_apples", incorrect_msg = "Giữ lại dòng lệnh dùng để gán giá trị 5 cho biến `my_apples`.")
+test_object("my_oranges", incorrect_msg = "Giữ lại dòng lệnh dùng để gán giá trị 6 cho biến `my_oranges`.")
+test_output_contains("my_apples + my_oranges",
+                     incorrect_msg = "Hãy nhớ in ra kết quả của phép tính cộng giữa `my_apples` và `my_oranges`. Câu cốt mẫu trong phần mô tả thực ra đã làm lộ kết quả của phép tính này!")
+msg <- "Bạn đã dùng lệnh `my_fruit <- my_apples + my_oranges` để tạo biến `my_fruit` chưa?"
+test_object("my_fruit", undefined_msg = msg, incorrect_msg = msg)
+success_msg("Tốt lắm! Lợi thế rất lớn của việc sử dụng các biến để tính toán nằm ở khả năng tái sử dụng. Nếu bạn gán lại biến `my_apples` để nó bằng 12 chứ không bằng 5 nữa và chạy lại tệp lệnh, `my_fruit` cũng sẽ được cập nhật ngay lập tức. Sang bài tiếp theo nhé.")
+```
+
+
+--- type:NormalExercise xp:100 skills:1 key:915fcc7c99
+## Táo và Cam
+
+Ai cũng sẽ bảo bạn không nên lẫn lộn táo và cam với nhau. Nhưng bạn vừa làm thế đấy thôi, đúng không :-)? Trong bài tập vừa rồi, cả hai biến `my_apples` và `my_oranges` đều chứa số. Dấu `+` trong R chỉ sử dụng được khi các biến đều chứa số. Nếu bạn thật sự muốn cộng tổng của "apples" và "oranges", và gán một giá trị chữ cho biến `my_oranges` (xem trình soạn thảo), R sẽ nghĩ bạn muốn gán tổng của một biến số và một biến chữ cho biến `my_fruit`. Điều này là không thể.
+
+*** =instructions
+- Nhấn nút 'Submit Answer' và đọc câu thông báo lỗi. Bạn cần hiểu rõ tại sao lại có lỗi.
+- Chỉnh lại câu lệnh để R hiển bạn có 6 quả cam, và vì vậy giỏ hoa của của bạn có số lượng hoa quả là 11.
+
+*** =hint
+Bạn cần gán giá trị số`6` cho biến `my_oranges` chứ không phải là giá trị chữ `"six"`. Bạn có thấy dấu ngoặc kép được dùng để thể hiện `"six"` là một giá trị chữ?
+
+*** =pre_exercise_code
+```{r}
+# no pec
+```
+
+*** =sample_code
+```{r}
+# Gán giá trị cho biến my_apples
+my_apples <- 5 
+
+# Gán lại giá trị đúng cho my_oranges
+my_oranges <- "six" 
+
+# Tạo và in biến my_fruit 
+my_fruit <- my_apples + my_oranges 
+my_fruit
+```
+
+*** =solution
+```{r}
+# Gán giá trị cho biến my_apples
+my_apples <- 5  
+
+# Gán lại giá trị đúng cho my_oranges
+my_oranges <- 6
+
+# Tạo và in biến my_fruit
+my_fruit <- my_apples + my_oranges 
+my_fruit
+```
+
+*** =sct
+```{r}
+test_error(incorrect_msg = "Bạn cần gán cho `my_oranges` một giá trị số, chứ không phải là một chuỗi từ!")
+test_object("my_apples", incorrect_msg = " Hãy nhớ là biến `my_apples` vẫn mang giá trị `5`.")
+test_object("my_oranges", incorrect_msg = "Hãy làm sao để  `my_oranges` bằng `6`.")
+test_object("my_fruit", incorrect_msg = "Giá trị của biến `my_fruit` chưa đúng. Nó phải bằng 11, là tổng của `my_apples` và`my_oranges`.")
+test_output_contains("my_fruit", incorrect_msg = "Đừng bỏ dòng lệnh dùng để in giá trị của `my_fruit`.")
+success_msg("Tuyệt lắm, cố gắng giữ phong độ nhé! Sang bài tập tiếp theo nào.")
+```
+
+
+--- type:NormalExercise xp:100 skills:1 key:0f23107394
+## Các loại dữ liệu cơ bản trong R
+
+R có thể xử lý nhiều loại dữ liệu khác nhau. Chúng ta sẽ bắt đầu với các loại dữ liệu cơ bản nhất:
+
+- Các giá trị thập phân ví dụ như `4.5`được gọi là **số**.
+- Các số tự nhiên ví dụ như `4` được gọi là **số nguyên**. Các số nguyên cũng nằm trong tập số.
+- Các giá trị luận lý (`TRUE` hoặc `FALSE`)được gọi là **giá trị lôgic**.
+- Các giá trị chữ hoặc chuỗi chữ được gọi là **ký tự**.
+
+Chú ý: dấu ngoặc kép bên phải thể hiện "some text"là một ký tự.
+
+*** =instructions
+Thay đổi giá trị của các biến sau đây:
+
+- Biến `my_numeric` thành `42`.
+- Biến `my_character` thành `"universe"`. Dấu ngoặc kép thể hiện `"universe"` là một ký tự.
+- Biến`my_logical` thành `FALSE`.
+
+Hãy nhớ là R phân biệt chữ thường và chữ hoa!
+
+*** =hint 
+Thay đổi các giá trị trong editor thành các giá trị được cho trong bài tập. Ví dụ:
+`my_numeric <- 42` được dùng để gán giá trị 42 cho biến `my_numeric`. 
+
+*** =pre_exercise_code
+```{r}
+# no pec
+```
+
+*** =sample_code
+```{r}
+# Thay đổi giá trị của my_numeric thành 42
+my_numeric <- 42.5
+
+# Thay đổi giá trị của my_character thành "universe"
+my_character <- "some text"
+
+# Thay đổi giá trị của my_logical thành FALSE
+my_logical <- TRUE
+```
+
+*** =solution
+```{r}
+# Thay đổi giá trị của my_numeric thành 42
+my_numeric <- 42
+
+# Thay đổi giá trị của my_character thành "universe
+my_character <- "universe"
+
+# Thay đổi giá trị của my_logical thành FALSE
+my_logical <- FALSE
+```
+
+*** =sct
+```{r}
+test_object("my_numeric", incorrect_msg = "Bạn đã sửa lại giá trị của `my_numeric` để nó chứa 42?")
+test_object("my_character", incorrect_msg = "Bạn đã sửa lại chính xác giá trị của `my_character` thành `\"universe\"` chưa? Đừng quên thêm dấu ngoặc kép nhé!")
+test_object("my_logical", incorrect_msg = "Bạn đã sửa lại chính xác giá trị của `my_logical` thành `FALSE` chưa? Nhớ viết hoa tất cả các chữ trong `FALSE`nhé!")
+success_msg("Giỏi lắm! Sang bài tập tiếp theo thôi.")
+```
+
+
+--- type:NormalExercise xp:100 skills:1 key:99b549229d
+## Dữ liệu kia thuộc loại gì nhỉ?
+
+Bạn có nhớ là lúc bạn tính tổng `5 + "six"`, bạn nhận lại thông báo lỗi do định dạng dữ liệu không thống nhất? Bạn có thể tránh các lỗi kiểu này bằng cách kiểm tra trước loại dữ liệu của biến. Để làm điều này, bạn dùng hàm`class()`. Hãy xem ví dụ được thể hiện trong phần lệnh bên phải màn hình.
+
+*** =instructions
+Hoàn thành phần lệnh trong trình soạn thảo, đồng thời hiển thị thông tin loại dữ liệu của `my_character` và `my_logical`. 
+
+*** =hint
+Câu lệnh để hiển thị thông tin loại dữ liệu của `my_numeric` đã được cho sẵn; hãy làm giống vậy cho `my_character` và `my_logical`. 
+
+*** =pre_exercise_code
+```{r}
+# no pec
+```
+
+*** =sample_code
+```{r}
+# Gán giá trị cho các biến thuộc nhiều loại dữ liệu khác nhau:
+my_numeric <- 42
+my_character <- "universe"
+my_logical <- FALSE 
+
+# Kiểm tra loại dữ liệu của my_numeric
+class(my_numeric)
+
+# Kiểm tra loại dữ liệu của my_character
+
+
+# Kiểm tra loại dữ liệu của my_logical
+
+```
+
+*** =solution
+```{r}
+# Gán giá trị cho các biến thuộc nhiều loại dữ liệu khác nhau:
+my_numeric <- 42
+my_character <- "universe"
+my_logical <- FALSE
+
+# Kiểm tra loại dữ liệu của my_numeric
+class(my_numeric)
+
+# Kiểm tra loại dữ liệu của my_character
+class(my_character)
+
+# Kiểm tra loại dữ liệu của my_logical
+class(my_logical)
+```
+
+*** =sct
+```{r}
+msg <- "Đừng  sửa lại giá trị của các biến!"
+lapply(c("my_numeric", "my_character", "my_logical"), test_object, undefined_msg = msg, incorrect_msg = msg)
+patt <- "Bạn đã thêm câu lệnh`class(%1$s)` để hiển thị loại dữ liệu của `%1$s` chưa?"
+test_output_contains("class(my_numeric)",
+                     incorrect_msg = "Đừng xóa câu lệnh hiển thị loại dữ liệu của `my_numeric`.")
+test_output_contains("class(my_character)",
+                     incorrect_msg = sprintf(patt, "my_character"))
+test_output_contains("class(my_logical)",
+                     incorrect_msg = sprintf(patt, "my_logical"))
+success_msg("Chúc mừng! Bạn đã hoàn thành bài tập cuối cùng trong chương này. Hãy sang chương tiếp theo để tìm hiểu về thế giới của những véc-tơ!")
+```
+
+
+

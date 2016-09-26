@@ -1,0 +1,1055 @@
+--- 
+title_meta  : Chương 2
+title       : Véc-tơ
+description : "Trong khóa học miễn phí về R này, chúng tôi sẽ đưa bạn đến chơi ở Vegas, tại đây bạn sẽ được học cách sử dụng vec-tơ trong R để phân tích kết quả đánh bạc của bạn! Sau khi hoàn thành chương này, bạn sẽ hoạc được cách tạo vec-tơ trong R, đặt tên cho chúng, chọn lọc các yếu tố của chúng và so sánh các vec-tơ với nhau."
+
+--- type:NormalExercise xp:100 skills:1 key:d9b453dbdd
+## Tạo một vec-tơ
+
+Bạn có nghĩ mình đang có vận may không? Bạn cần nó đấy, vì trong chương này bạn sẽ được đến thăm Thành phố Dục vọng, hay còn được gọi là *Thiên đường của các nhà thống kê học*!
+
+Nhờ có R cũng như khả năng phân tích số liệu bạn mới học được, bạn sẽ được dạy cách tăng trình độ cá cược của bạn và bắt đầu sự nghiệp cá cược chuyên nghiệp của bạn. Chương này sẽ chỉ cho bạn cách nắm bắt quá trình cá cược của bạn cũng như cách làm một vài phân tích đơn giản cho những hành động trong quá khứ. Cùng thẳng tiến tới Vegas nào!!
+
+*** =instructions
+- Bạn còn nhớ những kiến thức bạn được học trong chương 1 không? Gán giá trị `"Go!"` cho biến `vegas`. Nhớ là R phân biệt chữ hoa và chữ thường nhé!
+
+*** =hint
+Hãy gõ câu lệnh sau vào trình soạn thảo:
+```
+vegas <- "Go!"
+```
+
+*** =pre_exercise_code
+```{r}
+# no pec
+```
+
+*** =sample_code
+```{r}
+# Định nghĩa biến vegas
+vegas <- 
+```
+
+*** =solution
+```{r}
+# Định nghĩa biến vegas
+vegas <- "Go!"
+```
+
+*** =sct
+```{r}
+test_object("vegas", incorrect_msg = "Đừng quên gán giá trị đúng cho biến `vegas`. Đừng quên là R phân biệt chữ hoa và chữ thường nhé! ")
+success_msg("Tuyệt lắm! Sang bài tập tiếp theo nào.")
+```
+
+
+--- type:NormalExercise xp:100 skills:1 key:fd427db76f
+## Tạo một véc-tơ (2)
+
+Tập trung vào nào! 
+
+Trên con đường trở thành trọc phú của bạn, bạn sẽ thường xuyên sử dụng các véc-tơ. Véc-tơ là các chuỗi 1 chiều, được dùng để chứa dữ liệu số, ký tự hoặc lôgic. Nói cách khác, véc-tơ là một công cụ đơn giản để chứa dữ liệu.  Ví dụ, bạn có thể dùng chúng để chứa lời lỗ hàng ngày mà bạn kiếm được tại sòng bạc.
+
+Trong R, bạn sử dụng hàm kết hợp[`c()`] để tạo véc-tơ (http://www.rdocumentation.org/packages/base/functions/c). Bạn sẽ dùng các dấu phẩy để nối các yếu tố của véc-tơ với nhau, và đặt chúng ở giữa hai dấu ngoặc. Xem ví dụ dưới đây:
+
+```
+numeric_vector <- c(1, 2, 3)
+character_vector <- c("a", "b", "c")
+```
+
+Sau khi bạn đã tạo các véc-tơ trong R, bạn có thể sử dụng chúng để tính toán.
+
+*** =instructions 
+Hoàn thành câu lệnh để thể hiện rằng véc-tơ `boolean_vector` bao gồm 3 yếu tố: `TRUE`, `FALSE` và `TRUE` (với thứ tự như trên). 
+
+*** =hint 
+Gán `c(TRUE, FALSE, TRUE)` cho biến `boolean_vector` bằng dấu `<-`.
+
+*** =pre_exercise_code
+```{r}
+# no pec
+```
+
+*** =sample_code
+```{r}
+numeric_vector <- c(1, 10, 49)
+character_vector <- c("a", "b", "c")
+
+# Hoàn thành câu lệnh cho boolean_vector
+boolean_vector <-
+```
+
+*** =solution
+```{r}
+numeric_vector <- c(1, 10, 49)
+character_vector <- c("a", "b", "c")
+
+# Hoàn thành câu lệnh cho boolean_vector
+boolean_vector <- c(TRUE, FALSE, TRUE)
+```
+
+*** =sct
+```{r}
+msg <- "Đừng sửa câu lệnh được dùng để định nghĩa `numeric_vector` và `character_vector`!"
+test_object("numeric_vector", undefined_msg = msg, incorrect_msg = msg)
+test_object("character_vector", undefined_msg = msg, incorrect_msg = msg)
+test_object("boolean_vector",
+            incorrect_msg = "Hãy gán các giá trị đúng cho `boolean_vector`. Dùng `c(TRUE, FALSE, TRUE)`. Đừng dùng dấu ngoặc kép cho `TRUE` và `FALSE`! Ngoài ra, hãy nhớ sử dụng đúng thứ tự như trong phần hướng dẫn.")
+success_msg("Hoàn hảo! Bạn có thấy là khi ta đặt một khoảng cách giữa những dấu phẩy trong hàm `c()` thì câu lệnh sẽ dễ nhìn hơn không. Chúng ta sẽ luyện tập tiếp về việc tạo véc-tơ trong bài tập tiếp theo.")
+```
+
+
+--- type:NormalExercise xp:100 skills:1 key:9f41229dbc
+## Tạo một véc-tơ (3)
+
+Sau một tuần ở Las Vegas mà vẫn chưa mua được chiếc Ferrari nào, bạn quyết định đã đến lúc áp dụng siêu năng lực phân tích dữ liệu của mình.
+
+Trước khi bắt đầu phân tích, bạn quyết định tìm thông tin về tất cả các lần thắng thua của tuần trước: 
+
+Với `poker_vector`: 
+
+- Thứ Hai bạn thắng $140
+- Thứ Ba bạn thua $50
+- Thứ Tư bạn thắng $20 
+- Thứ Năm bạn thua $120
+- Thứ Sáu bạn thắng $240
+
+Với `roulette_vector`: 
+
+- Thứ Hai bạn thua $24
+- Thứ Ba bạn thua $50
+- Thứ Tư bạn thắng $100
+- Thứ Năm bạn thua $350
+- Thứ Sáu bạn thắng $10
+
+Bạn chỉ chơi bài poker và rulet, vì các bàn chơi trò xúc xắc đã đầy người. Để dùng dữ liệu này trong R, bạn quyết định tạo các biến `poker_vector` và `roulette_vector`.
+
+*** =instructions
+Gán dữ liệu thắng thua của trò rulet cho biến `roulette_vector`.
+
+*** =hint
+Trong trình soạn thảo đã có sẵn câu lệnh dùng để tạo `poker_vector`. Gán các giá trị đúng cho `roulette_vector` dựa vào các con số đã được cho ở phần đề bài. Đừng quên đặt dữ liệu thua ở dạng số âm.
+
+*** =sample_code
+```{r}
+# Dữ liệu thắng thua của trò poker từ thứ Hai đến thứ Sáu
+poker_vector <- c(140, -50, 20, -120, 240)
+
+# Dữ liệu thắng thua của trò rulet từ thứ Hai đến thứ Sáu
+roulette_vector <-  
+```
+
+*** =solution
+```{r}
+# Dữ liệu thắng thua của trò poker từ thứ Hai đến thứ Sáu
+poker_vector <- c(140, -50, 20, -120, 240)
+
+# Dữ liệu thắng thua của trò rulet từ thứ Hai đến thứ Sáu
+roulette_vector <- c(-24, -50, 100, -350, 10)
+```
+
+*** =sct
+```{r}
+test_object("poker_vector",
+            incorrect_msg = "Hãy nhớ đặt đúng các giá trị cho `poker_vector`.")
+test_object("roulette_vector",
+            incorrect_msg = "Hãy nhớ đặt đúng các giá trị cho `roulette_vector`.Kiểm tra xem thứ tự đã đúng chưa!")
+success_msg("Tốt lắm! Để xem lại các véc-tơ của bạn chứa những gì, bạn chỉ cần gõ tên biến trong bảng điều khiển và nhấn Enter. Sang bài tập tiếp theo nào!")
+```
+
+
+--- type:NormalExercise xp:100 skills:1 key:3b0b80b192
+## Đặt tên cho véc-tơ
+
+Là một chuyên viên phân tích dữ liệu, bạn phải hiểu mình đang dùng những dữ liệu nào. Việc hiểu ý nghĩa của từng yếu tố trong véc-tơ là rất quan trọng. 
+
+Trong bài tập trước, ta đã dùng dữ liệu thắng thua của bạn để tạo một véc-tơ. Mỗi yếu tố của véc-tơ là số liệu của một ngày trong tuần, nhưng hơi khó để nhận biết yếu tố nào thuộc ngày nào. Sẽ tốt hơn nếu bạn có thể chỉ ra điều này trong chính véc-tơ đó. 
+
+Bạn có thể đặt tên cho từng yếu tố của véc-tơ với hàm `names()`. Xem ví dụ dưới đây:
+
+```
+some_vector <- c("John Doe", "poker player")
+names(some_vector) <- c("Name", "Profession")
+```
+
+Đoạn lệnh này đã tạo ra véc-tơ `some_vector` rồi đặt tên cho 2 yếu tố trong véc-tơ. Yếu tố đầu tiên được đặt tên là `Name`, còn yếu tố thứ hai là `Profession`. Khi in ra trong bản điều khiển bạn nhận được kết quả sau đây:
+
+```
+          Name     Profession 
+    "John Doe" "poker player" 
+```
+
+*** =instructions
+- Câu code ở bên phải sử dụng các ngày trong tuần để đặt tên cho các yếu tố trong `poker_vector`. Viết một câu lệnh khác để làm điều tương tự với `roulette_vector`.
+
+*** =hint
+Bạn có thể dùng `names(roulette_vector)` để đặt tên cho `roulette_vector`. Nhớ là dùng cùng một véc-tơ có các ngày trong tuần làm tên. Và cũng nhớ là R phân biệt giữa chữ hoa và chữ thường!
+
+*** =sample_code
+```{r}
+# Dữ liệu thắng thua của trò poker từ thứ Hai đến thứ Sáu
+poker_vector <- c(140, -50, 20, -120, 240)
+
+# Dữ liệu thắng thua của trò rulet từ thứ Hai đến thứ Sáu
+roulette_vector <- c(-24, -50, 100, -350, 10)
+
+# Sử dụng các ngày trong tuần làm tên của poker_vector
+names(poker_vector) <- c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday")
+
+# Sử dụng các ngày trong tuần làm tên của roulette_vectors
+```
+
+*** =solution
+```{r}
+# Dữ liệu thắng thua của trò poker từ thứ Hai đến thứ Sáu
+poker_vector <- c(140, -50, 20, -120, 240)
+
+# Dữ liệu thắng thua của trò rulet từ thứ Hai đến thứ Sáu
+roulette_vector <- c(-24, -50, 100, -350, 10)
+
+# Sử dụng các ngày trong tuần làm tên của poker_vector
+names(poker_vector) <- c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday")
+
+# Sử dụng các ngày trong tuần làm tên của roulette_vectors
+names(roulette_vector) <- c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday")
+```
+
+*** =sct
+```{r}
+test_object("poker_vector",
+            incorrect_msg = "Đừng đổi giá trị bên trong `poker_vector`; đây là một câu lệnh mẫu.")
+test_object("roulette_vector",
+            incorrect_msg = "Đừng đổi giá trị bên trong `roulette_vector`; đây là một câu lệnh mẫu.")
+test_object("poker_vector",
+            eq_condition = "equal",
+            incorrect_msg = "Đừng thay đổi câu lệnh dùng để đặt tên các yếu tố trong `poker_vector`; hãy tập trung vào `roulette_vector`!")
+test_object("roulette_vector",
+            eq_condition = "equal",
+            incorrect_msg = "Hãy nhớ dùng véc-tơ tên chính xác để đặt tên cho `roulette_vector`. Sử dụng chính véc-tơ đã được dùng để đặt tên cho `poker_vector`.")
+success_msg("Giỏi lắm! Sang bài tập tiếp theo nào.")
+```
+
+
+--- type:NormalExercise xp:100 skills:1 key:6858c65a4a
+## Đặt tên cho véc-tơ (2)
+
+Nếu muốn trở thành một nhà thống kê học giỏi, bạn phải lười hơn một chút. (Nếu bạn vốn đã lười, nhiều khả năng bạn sở hữu tài năng thiên phú xuất chúng về mặt thống kê.)
+
+Trong các bài tập trước, bạn chắc đã cảm thấy vừa chán vừa bực mình khi phải viết đi viết lại một thông tin, ví dụ như thông tin các ngày trong tuần. Nhưng nếu bạn nhìn từ góc độ rộng hơn, thì còn có một cách làm hiệu quả hơn, đó là gán véc-tơ ngày trong tuần cho một **biến**! 
+
+Giống hệt như những gì bạn đã làm với dữ liệu thắng thua của mình trong trò poker và rulet, bạn cũng có thể tạp ra một biến để chứa thông tin ngày trong tuần. Sau đó bạn có thể dùng đi dùng lại biến này.
+
+*** =instructions
+- Biến chứa thông tin các ngày trong tuần có tên là `days_vector` đã được tạo sẵn cho bạn.
+- Sử dụng `days_vector` để đặt tên cho `poker_vector` và `roulette_vector`.
+
+*** =hint
+Bạn có thể dùng `names(poker_vector) <- days_vector` để đặt tên cho các yếu tố trong `poker_vector`. Làm điều tương tự với `roulette_vector`.
+
+*** =pre_exercise_code
+```{r}
+# no pec
+```
+
+*** =sample_code
+```{r}
+# Dữ liệu thắng thua của trò poker từ thứ Hai đến thứ Sáu
+poker_vector <- c(140, -50, 20, -120, 240)
+
+# Dữ liệu thắng thua của trò rulet từ thứ Hai đến thứ Sáu
+roulette_vector <- c(-24, -50, 100, -350, 10)
+
+# Biến days_vector
+days_vector <- c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday")
+ 
+# Gán các ngày trong tuần cho tên của các yếu tố trong roulette_vector poker_vector
+names(poker_vector) <-   
+names(roulette_vector) <-
+```
+
+*** =solution
+```{r}
+# Dữ liệu thắng thua của trò poker từ thứ Hai đến thứ Sáu
+poker_vector <- c(140, -50, 20, -120, 240)
+
+# Dữ liệu thắng thua của trò rulet từ thứ Hai đến thứ Sáu
+roulette_vector <- c(-24, -50, 100, -350, 10)
+
+# Biến days_vector
+days_vector <- c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday")
+
+# Gán các ngày trong tuần cho tên của các yếu tố trong roulette_vector poker_vector
+names(poker_vector) <- days_vector
+names(roulette_vector) <- days_vector
+```
+
+*** =sct
+```{r}
+msg <- "Đừng thay đổi nội dung của các biến `poker_vector`, `roulette_vector` hay là `days_vector`."
+test_object("poker_vector", undefined_msg = msg, incorrect_msg = msg)
+test_object("roulette_vector", undefined_msg = msg, incorrect_msg = msg)
+test_object("days_vector", undefined_msg = msg, incorrect_msg = msg)
+
+test_object("poker_vector",
+            eq_condition = "equal",
+            incorrect_msg = "Hãy nhớ gán `days_vector` làm tên của các yếu tố trong `poker_vector`.")
+test_object("roulette_vector",
+            eq_condition = "equal",
+            incorrect_msg = "Hãy nhớ gán `days_vector` làm tên của các yếu tố trong `roulette_vector`.")
+success_msg("Hay lắm! Một lời góp ý cho bạn, đó là phải nhất định tránh việc sao dư câu lệnh. Hãy sang bài tập tiếp theo để học các làm toán với véc-tơ nhé!")
+```
+
+
+--- type:NormalExercise xp:100 skills:1 key:da995f099f
+## Tính tổng số tiền thắng thua
+
+Giờ thì bạn đã đặt thông tin thắng thua trong các véc-tơ và đặt tên đầy đủ cho chúng, đã đến lúc sử dụng kỹ năm phân tích dữ liệu của mình. 
+
+Bạn muốn tìm hiểu những thông tin dưới đây:
+
+- Từng ngày trong tuần bạn đã thắng bao nhiêu hoặc lỗ bao nhiêu?
+- Sau cả tuần cá cược bạn có mất đồng nào không?
+- Bạn chơi poker hoặc rulet thắng hay thua?
+
+Để biết câu trả lời, bạn cần sử dụng véc-tơ để làm tính toán. 
+
+Bạn cần biết rằng khi cộng tổng hai véc-tơ trong R, R sẽ lấy tổng của từng yếu tố. Ví dụ, ba phép tính dưới đây sẽ cho chung một kết quả:
+
+```
+c(1, 2, 3) + c(4, 5, 6)
+c(1 + 4, 2 + 5, 3 + 6)
+c(5, 7, 9)
+```
+
+Bạn cũng có thể làm phép tính toán với các biến đại diện cho véc-tơ:
+
+```
+a <- c(1, 2, 3) 
+b <- c(4, 5, 6)
+c <- a + b
+```
+
+*** =instructions
+- Tính tổng của các biến `A_vector` và `B_vector` sau đó gán kết quả cho `total_vector`.
+- Kiểm tra lại kết quả bằng cách in `total_vector` ra.
+
+*** =hint
+Sử dụng dấu `+` để tính tổng của `A_vector` và `B_vector`. Dùng `<-` để gán kết quả cho `total_vector`.
+
+*** =pre_exercise_code
+```{r}
+# no pec
+```
+
+*** =sample_code
+```{r}
+A_vector <- c(1, 2, 3)
+B_vector <- c(4, 5, 6)
+
+# Tính tổng của `A_vector` và `B_vector`
+total_vector <- 
+  
+# In total_vector ra
+
+```
+
+*** =solution
+```{r}
+A_vector <- c(1, 2, 3)
+B_vector <- c(4, 5, 6)
+
+# Tính tổng của A_vector và B_vector
+total_vector <- A_vector + B_vector
+
+# In total_vector ra
+total_vector
+```
+
+*** =sct
+```{r}
+msg <- "Đừng sửa nội dung của `A_vector` hoặc `B_vector`!"
+test_object("A_vector", undefined_msg = msg, incorrect_msg = msg)
+test_object("B_vector", undefined_msg = msg, incorrect_msg = msg)
+test_object("total_vector", incorrect_msg = "Hãy nhớ là `total_vector` phải chứa tổng của `A_vector` và `B_vector`.")
+test_output_contains("total_vector", incorrect_msg = "Đừng quên in `total_vector` ra! Bạn chỉ cần gõ `total_vector` trên một dòng mới.")
+success_msg("Tốt lắm! Hãy sang bài tập tiếp theo.")
+```
+
+
+--- type:NormalExercise xp:100 skills:1 key:2969d8ed65
+## Tính tổng số tiền thắng thua (2)
+
+Giờ thì bạn đã hiểu cách R dùng véc-tơ để tính toán, đã đến lúc tăng bộ sưu tầm xe của bạn với những chiếc Ferrari rồi! Đầu tiên bạn phải nắm được lời lãi của từng ngày trong tuần. Tổng lời lãi hàng ngày là tổng lời lãi từng ngày của việc chơi poker và rulet.
+
+Trong R, đây thực chất là bài toán tổng của `roulette_vector` và `poker_vector`.
+
+*** =instructions
+Gán tổng lời lãi của mỗi ngày cho biến `total_daily` ( là tổng của cả poker và rulet).
+
+*** =hint
+Tương tự như bài tập trước, hãy gán tổng của hai véc-tơ cho một biến mới là biến `total_daily`.
+
+*** =pre_exercise_code
+```{r}
+# no pec
+```
+
+*** =sample_code
+```{r}
+# Tổng lời lãi của việc chơi poker và rulet từ thứ Hai đến thứ Sáu:
+poker_vector <- c(140, -50, 20, -120, 240)
+roulette_vector <- c(-24, -50, 100, -350, 10)
+days_vector <- c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday")
+names(poker_vector) <- days_vector
+names(roulette_vector) <- days_vector
+
+# Gán tổng lời lãi của mỗi ngày cho biến total_daily 
+total_daily <- 
+```
+
+*** =solution
+```{r}
+# Tổng lời lãi của việc chơi poker và rulet từ thứ Hai đến thứ Sáu:
+poker_vector <- c(140, -50, 20, -120, 240)
+roulette_vector <- c(-24, -50, 100, -350, 10)
+days_vector <- c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday")
+names(poker_vector) <- days_vector
+names(roulette_vector) <- days_vector
+
+# Gán tổng lời lãi của mỗi ngày cho biến total_daily
+total_daily <- poker_vector + roulette_vector
+```
+
+*** =sct
+```{r}
+msg = "Đừng sửa gì trong phần định nghĩa và đặt tên của biến `poker_vector` và `roulette_vector`."
+test_object("days_vector", undefined_msg = msg, incorrect_msg = msg)
+test_object("poker_vector", eq_condition = "equal", undefined_msg = msg, incorrect_msg = msg)
+test_object("roulette_vector", eq_condition = "equal", undefined_msg = msg, incorrect_msg = msg)
+
+test_object("total_daily", incorrect_msg = "Nhớ gán tổng của `poker_vector` và `roulette_vector` cho `total_daily`.")
+
+success_msg("Tuyệt! Sang bài tập tiếp theo nào.")
+```
+
+
+--- type:NormalExercise xp:100 skills:1 key:e66a56b9f0
+## Tính tổng số tiền thắng thua (3)
+
+Dựa vào phân tích vừa rồi, có vẻ như là bạn có cả những ngày thắng và ngày thua. Bạn chưa lường trước được điều này, và tự hỏi liệu có tí tẹo khả năng nào là bạn đã thua tiền sau cả một tuần chơi?
+
+Để trả lời câu hỏi này bạn có thể dùng hàm [`sum()`](http://www.rdocumentation.org/packages/base/functions/sum). Hàm này tính tổng  của tất cả các yếu tố trong một véc-tơ. Ví dụ, để tính tổng số tiền bạn đã thắng hoặc thua khi chơi poker bạn có thể gõ lệnh sau:
+
+```
+total_poker <- sum(poker_vector)
+```
+
+*** =instructions
+- Tính tổng số tiền bạn đã thắng hoặc thua khi chơi rulet và gán kết quả này cho `total_roulette`.
+- Giờ thì bạn đã có số tổng cho cả rulet lẫn poker, bạn có thể dễ dàng tính `total_week` (là tổng lỗ lãi từ việc thắng thua của cả tuần).
+- In `total_week`.
+
+*** =hint
+Sử dụng hàm [`sum()`](http://www.rdocumentation.org/packages/base/functions/sum) để tính tổng cho `roulette_vector`. `total_week` là tổng của `roulette_vector` và `poker_vector`.
+
+*** =pre_exercise_code
+```{r}
+# no pec
+```
+
+*** =sample_code
+```{r}
+# Tổng lời lãi của việc chơi poker và rulet từ thứ Hai đến thứ Sáu:
+poker_vector <- c(140, -50, 20, -120, 240)
+roulette_vector <- c(-24, -50, 100, -350, 10)
+days_vector <- c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday")
+names(poker_vector) <- days_vector
+names(roulette_vector) <- days_vector
+
+# Tổng lời lãi từ việc chơi poker
+total_poker <- sum(poker_vector)
+
+# Tổng lời lãi từ việc chơi rulet
+total_roulette <-  
+
+# Tổng lời lại chung
+total_week <- 
+
+# In kết quả total_week
+  
+```
+
+*** =solution
+```{r}
+# Tổng lời lãi của việc chơi poker và rulet từ thứ Hai đến thứ Sáu:
+poker_vector <- c(140, -50, 20, -120, 240)
+roulette_vector <- c(-24, -50, 100, -350, 10)
+days_vector <- c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday")
+names(poker_vector) <- days_vector
+names(roulette_vector) <- days_vector
+
+# Tổng lời lãi từ việc chơi poker
+total_poker <- sum(poker_vector)
+
+# Tổng lời lãi từ việc chơi rulet
+total_roulette <-  sum(roulette_vector)
+
+# Tổng lời lại chung
+total_week <- total_roulette + total_poker
+
+# In kết quả total_week
+total_week
+```
+
+*** =sct
+```{r}
+msg = "Đừng sửa gì trong phần định nghĩa và đặt tên của biến `poker_vector` và `roulette_vector`."
+test_object("days_vector", undefined_msg = msg, incorrect_msg = msg)
+test_object("poker_vector", eq_condition = "equal", undefined_msg = msg, incorrect_msg = msg)
+test_object("roulette_vector", eq_condition = "equal", undefined_msg = msg, incorrect_msg = msg)
+test_object("total_poker", 
+            incorrect_msg = "Nhớ gán tổng của  `poker_vector` cho biến `total_poker`.")
+test_object("total_roulette",
+            incorrect_msg = "Nhớ gán tổng của  `roulette_vector` cho biến `total_roulette`.")
+test_object("total_week",
+            incorrect_msg = "Nhớ gán tổng của 2 véc-tơ `total_roulette` và `total_poker` cho biến `total_week`.")
+
+test_output_contains("total_week", incorrect_msg = "Đừng quên gõ `total_week` trên một dòng mới để in giá trị của biến đó ra.")
+success_msg("Làm tốt lắm. Nhưng kết quả thì không được như mong đợi...")
+```
+
+
+--- type:NormalExercise xp:100 skills:1 key:f532f5332d
+## So sáng tổng lời lãi thắng thua
+
+Té ra là bạn đang thua bạc. Bạn cần thay đổi chiến thuật của mình ngay! Nghĩ sâu hơn nào...
+
+Sau một hồi suy nghĩ trong bể sục của khách sạn, bạn nhận ra một lý giải cho việc thua tiền là do bạn chơi rulet kém hơn chơi poker. Hình như bạn chơi poker thì kiếm đc nhiều tiền hơn (đồng nghĩa với `>`) là khi bạn chơi rulet.
+
+*** =instructions
+- Tính `total_poker` và `total_roulette` giống bài tập trước. Sử dụng hàm `sum()` hai lần.
+- Dùng phép so sánh để kiểm tra xem có đúng bạn kiếm đc nhiều tiền khi chơi poker hơn là khi chơi rulet không?. Sau đó in ra kết quả của phép so sánh này. Bạn rút ra được kết luận gì? Bạn nên tập trung chơi rulet hay là poker? 
+
+*** =hint
+- Bạn đã tính đc một phần của câu hỏi này trong bài tập trước rồi đấy!
+- Để kiểm tra xem có phải 6 lớn hơn 5 không, bạn gõ `6 > 5`. Bạn sẽ nhận lại 1 giá trị lôgic (`TRUE` hoặc `FALSE`).
+
+*** =pre_exercise_code
+```{r}
+# no pec
+```
+
+*** =sample_code
+```{r}
+# Tổng lời lãi của việc chơi poker và rulet từ thứ Hai đến thứ Sáu:
+poker_vector <- c(140, -50, 20, -120, 240)
+roulette_vector <- c(-24, -50, 100, -350, 10)
+days_vector <- c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday")
+names(poker_vector) <- days_vector
+names(roulette_vector) <- days_vector
+
+# Tính tổng lời lãi của việc chơi poker và rulet
+total_poker <-
+total_roulette <-
+
+# Kiểm tra xem có đúng bạn kiếm đc nhiều tiền khi chơi poker hơn là khi chơi rulet không
+
+```
+
+*** =solution
+```{r}
+# Tổng lời lãi của việc chơi poker và rulet từ thứ Hai đến thứ Sáu:
+poker_vector <- c(140, -50, 20, -120, 240)
+roulette_vector <- c(-24, -50, 100, -350, 10)
+days_vector <- c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday")
+names(poker_vector) <- days_vector
+names(roulette_vector) <- days_vector
+
+# Tính tổng lời lãi của việc chơi poker và rulet
+total_poker <- sum(poker_vector)
+total_roulette <- sum(roulette_vector)
+
+# Kiểm tra xem có đúng bạn kiếm đc nhiều tiền khi chơi poker hơn là khi chơi rulet không
+total_poker > total_roulette
+```
+
+*** =sct
+```{r}
+msg <- "Đừng sửa gì trong phần định nghĩa và đặt tên của biến `poker_vector` và `roulette_vector`."
+test_object("days_vector", undefined_msg = msg, incorrect_msg = msg)
+test_object("poker_vector", eq_condition = "equal", undefined_msg = msg, incorrect_msg = msg)
+test_object("roulette_vector", eq_condition = "equal", undefined_msg = msg, incorrect_msg = msg)
+
+test_object("total_poker", 
+            incorrect_msg = "Nhớ gán tổng của  `poker_vector` cho biến `total_poker`. Dùng hàm `sum()`.")
+test_object("total_roulette",
+            incorrect_msg = "Nhớ gán tổng của  `roulette_vector` cho biến `total_roulette`. Dùng hàm `sum()`.")
+test_output_contains("total_poker > total_roulette",
+                     incorrect_msg = "Bạn đã so sánh đúng chưa? Để kiểm tra xem có phải `total_poker` lớn hơn `total_roulette`, Bạn có thể gõ `total_poker > total_roulette`.")
+success_msg("Tốt lắm! Sang bài tập tiếp theo nhé.")
+```
+
+
+--- type:NormalExercise xp:100 skills:1 key:8d78be44e9
+## Chọn lọc trong véc-tơ: việc làm thú vị
+
+Dự cảm của bạn có vẻ đúng. Có thể thấy là bạn chơi poker tốt hơn rulet.
+
+Một hướng điều tra khác là so sánh phong độ của bạn lúc đầu tuần với lúc cuối tuần. Vì mấy ngày cuối tuần đúng là bạn uống hơi nhiều rượu...
+
+Để trả lời câu hỏi này, bạn chỉ nên tập trung phân tích một bộ phận của `total_vector`. Nói cách khác, chúng ta cần chọn lọc một vài yếu tố của véc-tơ này. Để chọn lọc các yếu tố của 1 véc-tơ (cũng như của một ma trận hoặc một khung dữ liệu). bạn có thể dùng dấu ngoặc vuông. Ở trong dấu ngoặc vuông, bạn chọn ra những yếu tố sẽ được sử dụng. Ví dụ, để chọn yếu tố đầu tiên của véc-tơ này, bạn gõ `poker_vector[1]`. để chọn yếu tố thứ hai của véc-tơ này, bạn gõ `poker_vector[2]`, etc. Nhớ là yếu tố đầu tiên được thể hiện bằng số 1, chứ không phải là số 0 như nhiều ngôn ngữ lập trình khác.
+
+*** =instructions
+Gán kết quả chơi poker của thứ Tư cho biến `poker_wednesday`.
+
+*** =hint
+Thứ Tư là yếu tố thứ ba của `poker_vector`, vì vậy bạn gõ `poker_vector[3]`.
+
+*** =pre_exercise_code
+```{r}
+# no pec
+```
+
+*** =sample_code
+```{r}
+# Tổng lời lãi của việc chơi poker và rulet từ thứ Hai đến thứ Sáu:
+poker_vector <- c(140, -50, 20, -120, 240)
+roulette_vector <- c(-24, -50, 100, -350, 10)
+days_vector <- c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday")
+names(poker_vector) <- days_vector
+names(roulette_vector) <- days_vector
+
+# Thêm một biến mới để thể hiện lựa chọn của bạn
+poker_wednesday <- 
+```
+
+*** =solution
+```{r}
+# Tổng lời lãi của việc chơi poker và rulet từ thứ Hai đến thứ Sáu:
+poker_vector <- c(140, -50, 20, -120, 240)
+roulette_vector <- c(-24, -50, 100, -350, 10)
+days_vector <- c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday")
+names(poker_vector) <- days_vector
+names(roulette_vector) <- days_vector
+
+# Thêm một biến mới để thể hiện lựa chọn của bạn
+poker_wednesday <- poker_vector[3]
+```
+
+*** =sct
+```{r}
+msg = "Đừng sửa gì trong phần định nghĩa và đặt tên của biến `poker_vector` và `roulette_vector`."
+test_object("days_vector", undefined_msg = msg, incorrect_msg = msg)
+test_object("poker_vector", eq_condition = "equal", undefined_msg = msg, incorrect_msg = msg)
+test_object("roulette_vector", eq_condition = "equal", undefined_msg = msg, incorrect_msg = msg)
+test_object("poker_wednesday", 
+            undefined_msg = "Hãy nhớ gán giá trị cho `poker_wednesday`.",
+            incorrect_msg = "Hình như `poker_wednesday` đang không chứa giá trị chính xác của `poker_vector`.")
+success_msg("Tuyệt lắm! Với R chúng ta cũng có thể cùng một lúc chọn nhiều yếu tố trong một véc-tơ. Bạn sẽ được học cách làm điều này trong bài tập tiếp theo!")
+```
+
+
+--- type:NormalExercise xp:100 skills:1 key:1351521670
+## Chọn lọc trong véc-tơ: việc làm thú vị (2)
+
+Hãy thử phân tích kết quả giữa tuần của bạn.
+
+Bạn có thể đặt dấu ngoặc vuông ở cuối để chọn nhiều yếu tố từ một véc-tơ.Chọn các yếu tố bạn cần dùng và đặt chúng trong dấu ngoặc vuông. Ví dụ: nếu bạn muốn chọn ngày thứ nhất và ngày thứ 5 của tuần, bạn sẽ đặt véc-tơ  `c(1, 5)` trong hai dấu ngoặc kép. Ví dụ, câu lệnh dưới đây chọn yếu tố thứ nhất và thứ 5 của `poker_vector`:
+
+```
+poker_vector[c(1, 5)]
+```
+
+*** =instructions
+Gán kết quả chơi poker của ngày thứ Ba, thứ Tư và thứ 5 cho biến `poker_midweek`.
+
+*** =hint
+Đặt véc-tơ `c(2, 3, 4)` trong hai dấu ngoặc vuông để chọn các véc tơ đúng trong `poker_vector`.
+
+*** =pre_exercise_code
+```{r}
+# no pec
+``` 
+
+*** =sample_code
+```{r}
+# Tổng lời lãi của việc chơi poker và rulet từ thứ Hai đến thứ Sáu:
+poker_vector <- c(140, -50, 20, -120, 240)
+roulette_vector <- c(-24, -50, 100, -350, 10)
+days_vector <- c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday")
+names(poker_vector) <- days_vector
+names(roulette_vector) <- days_vector
+
+# Thêm một biến mới để thể hiện lựa chọn của bạn
+poker_midweek <- 
+```
+
+*** =solution
+```{r}
+# Tổng lời lãi của việc chơi poker và rulet từ thứ Hai đến thứ Sáu:
+poker_vector <- c(140, -50, 20, -120, 240)
+roulette_vector <- c(-24, -50, 100, -350, 10)
+days_vector <- c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday")
+names(poker_vector) <- days_vector
+names(roulette_vector) <- days_vector
+
+# Thêm một biến mới để thể hiện lựa chọn của bạn
+poker_midweek <- poker_vector[c(2, 3, 4)]
+```
+
+*** =sct
+```{r}
+msg = "Đừng sửa gì trong phần định nghĩa và đặt tên của biến `poker_vector` và `roulette_vector`."
+test_object("days_vector", undefined_msg = msg, incorrect_msg = msg)
+test_object("poker_vector", eq_condition = "equal", undefined_msg = msg, incorrect_msg = msg)
+test_object("roulette_vector", eq_condition = "equal", undefined_msg = msg, incorrect_msg = msg)
+test_object("poker_midweek", 
+            incorrect_msg = "Hình như `poker_midweek` không chứa giá trị chính xác của `poker_vector`.Bạn nên đặt `c(2, 3, 4)` trong dấu ngoặc vuông.")
+success_msg("Làm tốt lắm! Tiếp tục sang bài tập tiếp theo để tìm hiểu sâu hơn nữa về việc lựa chọn trong véc-tơ!");
+```
+
+
+--- type:NormalExercise xp:100 skills:1 key:27976b79f4
+## Chọn lọc trong véc-tơ: việc làm thú vị (3)
+
+Cách chọn nhiều yếu tố trong `poker_vector` với `c(2, 3, 4)` không được thuận tiện lắm. Phần lớn các nhà thống kê học là những người lười bẩm sinh, nên họ đã phát minh ra một cách dễ hơn: `c(2, 3, 4)` có thể viết tắt là `2:4`, với cách làm này bạn sẽ tạo ra một véc-tơ gồm toàn số tự nhiên từ 2 đến 4.
+
+Vậy một cách khác để lấy kết quả của giữa tuần là `poker_vector[2:4]`. Bạn để ý thấy véc-tơ`2:4` được đặt trong dấu ngoặc vuông để chọn các yếu tố từ 2 đến 4.
+
+*** =instructions
+Gán kết quả rulet của thứ Ba đến thứ Sáu cho `roulette_selection_vector`; bạn có thể sử dụng `:` nếu làm thế tiện cho bạn. 
+
+*** =hint
+Gán kết quả của việc chọn lọc từ `roulette_vector` cho `roulette_selection_vector` bằng cách đặt `2:5` trong dấu ngoặc vuông.
+
+*** =sample_code
+```{r}
+# Tổng lời lãi của việc chơi poker và rulet từ thứ Hai đến thứ Sáu:
+poker_vector <- c(140, -50, 20, -120, 240)
+roulette_vector <- c(-24, -50, 100, -350, 10)
+days_vector <- c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday")
+names(poker_vector) <- days_vector
+names(roulette_vector) <- days_vector
+
+# Thêm một biến mới để thể hiện lựa chọn của bạn
+roulette_selection_vector <- 
+```
+
+*** =solution
+```{r}
+# Tổng lời lãi của việc chơi poker và rulet từ thứ Hai đến thứ Sáu:
+poker_vector <- c(140, -50, 20, -120, 240)
+roulette_vector <- c(-24, -50, 100, -350, 10)
+days_vector <- c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday")
+names(poker_vector) <- days_vector
+names(roulette_vector) <- days_vector
+
+# Thêm một biến mới để thể hiện lựa chọn của bạn
+roulette_selection_vector <- roulette_vector[2:5]
+```
+
+*** =sct
+
+```{r}
+msg = "Đừng sửa gì trong phần định nghĩa và đặt tên của biến `poker_vector` và `roulette_vector`."
+test_object("days_vector", undefined_msg = msg, incorrect_msg = msg)
+test_object("poker_vector", eq_condition = "equal", undefined_msg = msg, incorrect_msg = msg)
+test_object("roulette_vector", eq_condition = "equal", undefined_msg = msg, incorrect_msg = msg)
+test_object("roulette_selection_vector", 
+            undefined_msg = "Nhớ phải gán giá trị cho biến `roulette_selection_vector`.",
+            incorrect_msg = "Hình như `roulette_selection_vector` không chứa lựa chọn đúng từ `roulette_vector`. Nhớ dùng đúng số để chọn đúng.")
+success_msg("Tuyệt lắm! Dấu hai chấm cực kì hữu dụng và rất thường được sử dụng trong lập trình R, nên bạn hãy nhớ nó nhé. Sang bài tập tiếp theo nào.")
+```
+
+
+--- type:NormalExercise xp:100 skills:1 key:e6c263ddee
+## Chọn lọc trong véc-tơ: việc làm thú vị (4)
+
+Một cách khác để hoàn thành bài tập vừa rồi là dùng nên của các yếu tố trong véc-tơ (Monday, Tuesday, ...) thay cho việc dùng số đại diện. Ví dụ,
+
+```
+poker_vector["Monday"]
+```
+
+sẽ lựa chọn yếu tố đầu tiên của `poker_vector` vì `"Monday"` là tên của yếu tố đầu tiên.
+
+Hệt như bài tập với số vừa rồi, bạn cũng có thể sử dụng tên của các yếu tố để chọn lựa nhiều yếu tố một lúc, ví dụ như:
+
+```
+poker_vector[c("Monday","Tuesday")]
+```
+
+*** =instructions
+- Lựa chọn ba yếu tố đầu tiên của `poker_vector`bằng cách gọi tên của chúng: `"Monday"`, `"Tuesday"` and `"Wednesday"`. Gán kết quả chọn cho `poker_start`.
+- Tính trung bình các giá trị trong `poker_start`với hàm [`mean()`](http://www.rdocumentation.org/packages/base/functions/mean). Sau đó in kết quả ra để kiểm tra độ chính xác.
+
+*** =hint
+- Bạn có thể đặt véc-tơ `c("Monday", "Tuesday", "Wednesday")` trong dấu ngoặc vuông để chọn lựa từ `poker_vector`.
+- Có thể dùng hàm `mean(poker_start)` để tính giá trị trung bình của `poker_start`. Bạn không cần trung bình của tất cả các yếu tố trong poker, mà chỉ cần của ba ngày đầu tiên.
+
+*** =pre_exercise_code
+```{r}
+# no pec
+```
+
+*** =sample_code
+```{r}
+# Tổng lời lãi của việc chơi poker và rulet từ thứ Hai đến thứ Sáu:
+poker_vector <- c(140, -50, 20, -120, 240)
+roulette_vector <- c(-24, -50, 100, -350, 10)
+days_vector <- c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday")
+names(poker_vector) <- days_vector
+names(roulette_vector) <- days_vector
+
+# Chọn kết quả chơi poker của thứ Hai, thứ Ba và thứ Tư
+poker_start <- 
+  
+# Tính trung bình của các yếu tố trong poker_start
+
+```
+
+*** =solution
+```{r}
+# Tổng lời lãi của việc chơi poker và rulet từ thứ Hai đến thứ Sáu:
+poker_vector <- c(140, -50, 20, -120, 240)
+roulette_vector <- c(-24, -50, 100, -350, 10)
+days_vector <- c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday")
+names(poker_vector) <- days_vector
+names(roulette_vector) <- days_vector
+
+# Chọn kết quả chơi poker của thứ Hai, thứ Ba và thứ Tư 
+poker_start <- poker_vector[c("Monday", "Tuesday", "Wednesday")]
+  
+# Tính trung bình của các yếu tố trong poker_start
+mean(poker_start)
+```
+
+*** =sct
+```{r}
+msg = "Đừng sửa gì trong phần định nghĩa và đặt tên của biến `poker_vector` và `roulette_vector`."
+test_object("days_vector", undefined_msg = msg, incorrect_msg = msg)
+test_object("poker_vector", eq_condition = "equal", undefined_msg = msg, incorrect_msg = msg)
+test_object("roulette_vector", eq_condition = "equal", undefined_msg = msg, incorrect_msg = msg)
+test_object("poker_start", 
+            incorrect_msg = "Có vẻ như `poker_start` không chứa ba giá trị đầu tiên của `poker_vector`.Để làm điều này bạn cho `c(\"Monday\", \"Tuesday\", \"Wednesday\")` vào trong dấu ngoặc vuông.")
+test_output_contains("mean(poker_start)", incorrect_msg = "Bạn đã tính và in ra đúng giá trị trung bình của các giá trị trong `poker_start` chưa? Dùng hàm `mean(poker_start)`.")
+success_msg("Giỏi lắm! Ngoài việc chia nhỏ véc-tơ theo thứ bậc hoặc theo tên, bạn cũng có thể làm thế nhờ việc so sánh. Bài tập tiếp theo sẽ dạy bạn cách làm này!");
+```
+
+
+--- type:NormalExercise xp:100 skills:1 key:f0f619c901
+## Chọn lựa bằng cách so sánh - Bước 1
+
+bằng cách sử dụng các dấu so sánh, chúng ta có thể tiếp cận câu hỏi ở bài tập trước một cách chủ động hơn.
+
+Các dấu so sánh dạng lôgic mà R hiểu là:
+
+- `<` thể hiện sự nhỏ hơn
+- `>` thể hiện sự lớn hơn
+- `<=` thể hiện sự nhỏ hơn hoặc bằng
+- `>=` thể hiện sự lớn hơn hoặc bằng
+- `==` thể hiện sự bằng nhau
+- `!=` thể hiện sự không bằng nhau
+
+Trong chương trước, bạn đã học là `6 > 5` trả cho bạn kết quả `TRUE`. Cái hay của R là bạn cũng có thể sử dụng những dấu so sánh trên cho véc-tơ. Ví dụ:
+
+```
+> c(4, 5, 6) > 5
+[1] FALSE FALSE TRUE
+```
+
+Lệnh này kiểm tra tất cả các yếu tố trong véc-tơ theo dấu so sánh và trả về giá trị `TRUE` hoặc `FALSE`.
+
+*** =instructions
+- Kiểm tra xem những giá trị nào trong `poker_vector` là giá trị dương (i.e. > 0)và gán kết quả này cho `selection_vector`. 
+- In `selection_vector` ra để kiểm tra kết quả. Kết quả này chỉ cho bạn thấy bạn đã thắng độ (`TRUE`) hay thua độ (`FALSE`) mỗi ngày.
+
+*** =hint
+Để kiểm tra xem bạn thắng poker vào những ngày nào. R sẽ kiểm tra tất cả các yếu tố trong `poker_vector`để xem nó có lớn hơn 0 không. Để trả lời câu hỏi này, bạn viết lệnh `some_vector > 0` 
+
+*** =pre_exercise_code
+```{r}
+# no pec
+```
+
+*** =sample_code
+```{r}
+# Tổng lời lãi của việc chơi poker và rulet từ thứ Hai đến thứ Sáu:
+poker_vector <- c(140, -50, 20, -120, 240)
+roulette_vector <- c(-24, -50, 100, -350, 10)
+days_vector <- c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday")
+names(poker_vector) <- days_vector
+names(roulette_vector) <- days_vector
+
+# Bạn chơi poker thắng tiền vào những ngày nào?
+selection_vector <- 
+  
+# In kết quả của selection_vector
+
+```
+
+*** =solution
+```{r}
+# Tổng lời lãi của việc chơi poker và rulet từ thứ Hai đến thứ Sáu:
+poker_vector <- c(140, -50, 20, -120, 240)
+roulette_vector <- c(-24, -50, 100, -350, 10)
+days_vector <- c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday")
+names(poker_vector) <- days_vector
+names(roulette_vector) <- days_vector
+
+# Bạn chơi poker thắng tiền vào những ngày nào?
+selection_vector <- poker_vector > 0
+  
+# In kết quả của selection_vector
+selection_vector
+```
+
+*** =sct
+```{r}
+msg <- "Đừng sửa gì trong phần định nghĩa và đặt tên của biến `poker_vector` và `roulette_vector`."
+test_object("days_vector", undefined_msg = msg, incorrect_msg = msg)
+test_object("poker_vector", eq_condition = "equal", undefined_msg = msg, incorrect_msg = msg)
+test_object("roulette_vector", eq_condition = "equal", undefined_msg = msg, incorrect_msg = msg)
+
+test_object("selection_vector", incorrect_msg = "Có vẻ như `selection_vector` không thể hiện kết quả đúng. Hãy nhớ rằng R kiểm tra từng yếu tố của véc-tơ.")
+test_output_contains("selection_vector", incorrect_msg = "Đừng quên in ra kết quả của`selection_vector` bằng cách gõ tên biến trên một dòng mới.")
+success_msg("Tuyệt vời!")
+```
+
+
+--- type:NormalExercise xp:100 skills:1 key:2754fc5cd4
+## Chọn lựa bằng cách so sánh - Bước 2
+
+Sử dụng phép so sánh sẽ giúp bạn dễ dàng trong việc phân tích số liệu hơn. Thay vì phải chọn tệp con của giá trị ngày để điều tra như trước, bạn chỉ cần bảo R trả lại kết quả của những ngày bạn kiếm được tiền nhờ việc chơi poker. 
+
+Trong những bài tập trước đây, bạn sử dụng `selection_vector <- poker_vector > 0` để tìm những ngày bạn kiếm được tiền nhờ việc chơi poker. Bây giờ bạn không chỉ muốn biết ngày nào bạn thắng, và còn muốn biết những ngày đó bạn thắng bao nhiêu tiền.
+
+Bạn có thể chọn những yếu tố bạn muốn chọn bằng cách đặt `selection_vector`  vào trong dấu ngoặc vuông ngay sau `poker_vector`:
+
+```
+poker_vector[selection_vector]
+```
+
+R sẽ hiểu ý bạn khi bạn đặt một véc-tơ lôgic trong ngoặc vuông: nó sẽ chỉ chọn những yếu tố được trả về giá trị `TRUE` trong `selection_vector`.
+
+*** =instructions
+Đặt `selection_vector` trong dấu ngoặc vuông để gán giá trị bạn thắng theo ngày thắng cho biến `poker_winning_days`.
+
+*** =hint
+Dùng `poker_vector[selection_vector]` để chọn biến trong `poker_vector`, và gán kết quả cho `poker_winning_days`.
+
+*** =pre_exercise_code
+```{r}
+# no pec
+```
+
+*** =sample_code
+```{r}
+# Tổng lời lãi của việc chơi poker và rulet từ thứ Hai đến thứ Sáu:
+poker_vector <- c(140, -50, 20, -120, 240)
+roulette_vector <- c(-24, -50, 100, -350, 10)
+days_vector <- c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday")
+names(poker_vector) <- days_vector
+names(roulette_vector) <- days_vector
+
+# Bạn chơi poker thắng tiền vào những ngày nào?
+selection_vector <- poker_vector > 0
+
+# Chọn những ngày đó trong poker_vector
+poker_winning_days <- 
+```
+
+*** =solution
+```{r}
+# Tổng lời lãi của việc chơi poker và rulet từ thứ Hai đến thứ Sáu:
+poker_vector <- c(140, -50, 20, -120, 240)
+roulette_vector <- c(-24, -50, 100, -350, 10)
+days_vector <- c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday")
+names(poker_vector) <- days_vector
+names(roulette_vector) <- days_vector
+
+# Bạn chơi poker thắng tiền vào những ngày nào?
+selection_vector <- poker_vector > 0
+
+# Chọn những ngày đó trong poker_vector
+poker_winning_days <- poker_vector[selection_vector]
+```
+
+*** =sct
+```{r}
+msg = "Đừng sửa gì trong phần định nghĩa và đặt tên của biến `poker_vector` và `roulette_vector`."
+test_object("days_vector", undefined_msg = msg, incorrect_msg = msg)
+test_object("poker_vector", eq_condition = "equal", undefined_msg = msg, incorrect_msg = msg)
+test_object("roulette_vector", eq_condition = "equal", undefined_msg = msg, incorrect_msg = msg)
+test_object("selection_vector", incorrect_msg = "Đừng sửa cách tính của `selection_vector`.")
+test_object("poker_winning_days",
+            incorrect_msg =  "Có vẻ như `poker_winning_days` không cho kết quả chính xác. Dùng  `poker_vector[selection_vector]`.")
+success_msg("Tốt lắm! Sang bài tập tiếp theo nhé.")
+```
+
+
+--- type:NormalExercise xp:100 skills:1 key:59e8dcbbd5
+## Chọn lọc nâng cao
+
+Hệt như cách bạn làm cho poker, bạn cũng muốn biết ngày nào bạn thắng độ rulet.
+
+*** =instructions
+- Tạo biến `selection_vector` để xem bạn có thắng độ không và nếu có thì vào những ngày nào.
+- Gán các giá trị tiền bạn kiếm được trong những ngày bạn thắng độ với trò rulet cho véc-tơ `roulette_winning_days`. Véc-tơ này sẽ chứa tiền thắng độ của `roulette_vector`.
+
+*** =hint
+Sau khi bạn đã tính đúng giá trị của `selection_vector`, bạn có thể dùng `roulette_vector[selection_vector]` để chọn giá trị dương từ `roulette_vector`.
+
+*** =pre_exercise_code
+```{r}
+# no pec
+```
+
+*** =sample_code
+```{r}
+# Tổng lời lãi của việc chơi poker và rulet từ thứ Hai đến thứ Sáu:
+poker_vector <- c(140, -50, 20, -120, 240)
+roulette_vector <- c(-24, -50, 100, -350, 10)
+days_vector <- c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday")
+names(poker_vector) <- days_vector
+names(roulette_vector) <- days_vector
+
+# Bạn chơi rulet thắng tiền vào những ngày nào?
+selection_vector <-
+
+# Chọn những ngày đó từ roulette_vector 
+roulette_winning_days <- 
+```
+
+*** =solution
+```{r}
+# Tổng lời lãi của việc chơi poker và rulet từ thứ Hai đến thứ Sáu:
+poker_vector <- c(140, -50, 20, -120, 240)
+roulette_vector <- c(-24, -50, 100, -350, 10)
+days_vector <- c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday")
+names(poker_vector) <- days_vector
+names(roulette_vector) <- days_vector
+
+# Bạn chơi rulet thắng tiền vào những ngày nào?
+selection_vector <- roulette_vector > 0
+
+# Chọn những ngày đó từ roulette_vector 
+roulette_winning_days <- roulette_vector[selection_vector]
+```
+
+*** =sct
+```{r}
+msg = "Đừng sửa gì trong phần định nghĩa và đặt tên của biến `poker_vector` và `roulette_vector`."
+test_object("days_vector", undefined_msg = msg, incorrect_msg = msg)
+test_object("poker_vector", eq_condition = "equal", undefined_msg = msg, incorrect_msg = msg)
+test_object("roulette_vector", eq_condition = "equal", undefined_msg = msg, incorrect_msg = msg)
+test_object("selection_vector", 
+            incorrect_msg = "Có vẻ như `selection_vector` không chứa giá trị chính xác. Sử dụng  `roulette_vector > 0`.")
+test_object("roulette_winning_days",
+            incorrect_msg = "Có vẻ như `roulette_winning_days` không chứa giá trị chính xác. Sử dụng `roulette_vector[selection_vector]`.")
+
+success_msg("Tuyệt vời! Chương về véc-tơ đã kết thúc ở tại đây. Ở chương tiếp theo, bạn sẽ được học phiên bản 2D của véc-tơ: Ma trận.")
+```
+
+
+

@@ -1,0 +1,678 @@
+--- 
+title_meta  : Chương 3
+title       : Ma trận
+description : Trong chương này bạn sẽ được học cách sử dụng ma trận trong R. Sau khi học xong, bạn sẽ thành thạo trong việc thiết lập ma trận và biết cách làm những tính toán cơ bản trong ma trận. Để minh họa cho những điều trên, bạn sẽ phân tích doanh thu bán vé của Star Wars. Chúc may mắn!
+
+--- type:NormalExercise xp:100 skills:1 key:d61aeba84c
+## Thế nào là ma trận?
+
+Trong ngôn ngữ của R, ma trận là một tập hợp các yếu tố thuộc cùng một loại dữ liệu (số, ký tự hoặc lôgic) được sắp xếp thành dòng và cột với số lượng cố định. Ma trận chỉ có hai chiều là chiều dòng và cột.
+
+Bạn có thể xây dựng một ma trận trong R với hàm [`matrix()`](http://www.rdocumentation.org/packages/base/functions/matrix). Ví dụ như dưới đây:
+
+```
+matrix(1:9, byrow = TRUE, nrow = 3)
+```
+
+Trong hàm [`matrix()`](http://www.rdocumentation.org/packages/base/functions/matrix) có những tham số sau:
+
+- Tham số đầu tiên là 1 tập hợp các yếu tố mà bạn muốn yêu cầu R sắp xếp thành hàng và cột trong ma trận đó. Trong ví dụ trên, `1:9` được hiểu là viết tắt của `c(1, 2, 3, 4, 5, 6, 7, 8, 9)`.
+- Tham số `byrow` thể hiện ma trận này được cập nhật theo từng dòng một. Nếu muốn ma trận đó đc cập nhật theo từng cột một, ta chỉ việc đặt `byrow = FALSE`. 
+- Tham số thứ ba `nrow` số dòng của ma trận.
+
+*** =instructions
+Xây dựng một ma trận gồm 3 dòng để chứa các số từ 1 đến 9, cập nhật theo từng dòng một.
+
+*** =hint
+Bạn đọc kỹ hướng dẫn nhé, câu trả lời đã được cho rồi đấy!
+
+*** =pre_exercise_code
+```{r}
+# no pec
+```
+
+*** =sample_code
+```{r}
+# Xây dựng một ma trận gồm 3 dòng để chứa các số từ 1 đến 9
+```
+
+*** =solution
+```{r}
+# Xây dựng một ma trận gồm 3 dòng để chứa các số từ 1 đến 9
+matrix(1:9, byrow = TRUE, nrow = 3)
+```
+
+*** =sct
+```{r}
+test_function("matrix", c("data", "byrow", "nrow"),
+              incorrect_msg = "Bạn đã tạo đúng ma trận chưa? Bạn đọc kỹ hướng dẫn nhé, câu trả lời đã được cho rồi đấy!")
+test_output_contains("matrix(1:9, byrow=TRUE, nrow=3)",
+                     incorrect_msg = "Hình như định nghĩa của ma trận có vấn đề. Bạn đọc kỹ hướng dẫn nhé, câu trả lời đã được cho rồi đấy!")
+success_msg("Tuyệt! Sang bài tập tiếp theo nào.")
+```
+
+
+--- type:NormalExercise xp:100 skills:1 key:effc2fb945
+## Phân tích trong ma trận
+
+
+Đã đến lúc bắt tay vào việc chính. Trong bài tập sau đây, bạn sẽ phân tích doanh số vé bán ra của chùm phim Star Wars. Chúc bạn may mắn!
+
+Trong trình soạn thảo, chúc ta được cho sẵn ba véc-tơ. Mỗi véc-tơ thể hiện doanh thu vé của một trong 3 bộ phim đầu tiên của Star Wars. Yếu tố đầu tiên của từng véc-tơ thể hiện doanh thu vé trong nội địa nước Mỹ, còn yếu tố thứ hai thể hiện doanh thu vé bán ngoài nước Mỹ. (nguồn: Wikipedia).
+
+Trong bài tập này, bạn sẽ kếp hợp tất cả các con số này vào một véc-tơ duy nhất. Sau đó bạn sẽ sây dựng một ma trận từ véc-tơ đó.
+
+*** =instructions
+- Sử dụng `c(new_hope, empire_strikes, return_jedi)` để gộp ba véc-tơ này làm một. Đặt tên véc-tơ mới là `box_office`.
+- Xây dựng một ma trận có 3 dòng, mỗi dòng tượng trưng cho một bộ phim. Sử dụng hàm `matrix()` để làm điều này. Tham số đầu tiên là véc-tơ `box_office`,là véc-tơ chứa tất cả các thông tin về doanh thu. Tiếp đó, bạn đặt  `nrow = 3` và `byrow = TRUE`. Đặt tên cho ma trận mới là `star_wars_matrix`.
+
+*** =hint
+- `box_office <- c(new_hope, empire_strikes, return_jedi)`sẽ gộp dữ liệu từ các véc-tơ khác nhau vào thành một véc-tơ duy nhất có 6 yếu tố.
+- Sử dụng mẫu `matrix(box_office, nrow = ..., by_row ...)` để giải phần thứ hai của bài tập.
+
+*** =pre_exercise_code
+```{r}
+# no pec
+```
+
+*** =sample_code
+```{r}
+# Doanh thu vé Star Wars bán ra (theo đơn vị hàng triệu!)
+new_hope <- c(460.998, 314.4)
+empire_strikes <- c(290.475, 247.900)
+return_jedi <- c(309.306, 165.8)
+
+# Tạo box_office
+box_office <- 
+
+# Xây dựng star_wars_matrix
+star_wars_matrix <- 
+```
+
+*** =solution
+```{r}
+# Doanh thu vé Star Wars bán ra (theo đơn vị hàng triệu!)
+new_hope <- c(460.998, 314.4)
+empire_strikes <- c(290.475, 247.900)
+return_jedi <- c(309.306, 165.8)
+
+# Tạo box_office
+box_office <- c(new_hope, empire_strikes, return_jedi)
+
+# Xây dựng star_wars_matrix
+star_wars_matrix <- matrix(box_office, nrow = 3, byrow = TRUE) 
+```
+
+*** =sct
+```{r}
+msg <- "Đừng thay đổi nội dung các biến `new_hope`, `empire_strikes` và `return_jedi`!"
+test_object("new_hope", undefined_msg = msg, incorrect_msg = msg)
+test_object("empire_strikes", undefined_msg = msg, incorrect_msg = msg)
+test_object("return_jedi", undefined_msg = msg, incorrect_msg = msg)
+
+test_object("box_office", incorrect_msg = "Bạn đã gộp đúng các giá trị trong `new_hope`, `empire_strikes` và `return_jedi` vào véc-tơ `box_office`? chưa")
+
+test_function("matrix", c("data", "nrow", "byrow"),
+              incorrect_msg = "Bạn hãy nhớ đặt đúng các tham số trong hàm `matrix()`: `box_office`, `nrow = 3`, `by_row = TRUE`.")
+
+test_object("star_wars_matrix",
+            incorrect_msg = "Bạn đã gán kết quả của câu lệnh `matrix()` cho `star_wars_matrix` chưa?")
+
+success_msg("Đúng là may mắn đang ở bên bạn! Sang bài tập tiếp theo nhé.")
+```
+
+
+--- type:NormalExercise xp:100 skills:1 key:f734e8bf74
+## Đặt tên trong ma trận
+
+Để giúp bạn nhớ mình đã dùng `star_wars_matrix` để chứa những thông tin gì, bạn muốn dùng tên của các bộ phim để đặt cho từng dòng. Điều này không chỉ giúp bạn dễ đọc thông tin hơn, mà còn giúp bạn dễ dàng lọc ra những yếu tố mà bạn cần từ trong ma trận.
+
+CŨng giống như véc-tơ, bạn có thể đặt tên cho các dòng và cột trong ma trận. 
+
+```
+rownames(my_matrix) <- row_names_vector
+colnames(my_matrix) <- col_names_vector
+```
+
+Chúng tôi đã chuẩn bị sẵn hai véc-tơ cho bạn là `region`, và `titles`. Bạn sẽ sử dụng 2 véc-tơ này để đặt tên cho cột và dòng trong `star_wars_matrix`, theo thứ tự đó.
+
+*** =instructions
+- Sử dụng `colnames()` để đặt tên cho các cột trong `star_wars_matrix` với véc-tơ `region`.
+- Sử dụng `rownames()` để đặt tên cho các dòng trong `star_wars_matrix` với véc-tơ `titles`.
+- In ra kết quả của `star_wars_matrix`.
+
+*** =hint
+Bạn có thể dùng `colnames(star_wars_matrix) <- region` để đặt tên cho các cột trong `star_wars_matrix`. Làm tương tự với các dòng.
+
+*** =pre_exercise_code
+```{r}
+# no pec
+```
+
+*** =sample_code
+```{r}
+# Doanh thu vé Star Wars bán ra (theo đơn vị hàng triệu!)
+new_hope <- c(460.998, 314.4)
+empire_strikes <- c(290.475, 247.900)
+return_jedi <- c(309.306, 165.8)
+
+# Xây dựng matrix
+star_wars_matrix <- matrix(c(new_hope, empire_strikes, return_jedi), nrow = 3, byrow = TRUE)
+
+# Lập 2 véc-tơ sẽ được đùng để đặt tên là region and titles
+region <- c("US", "non-US")
+titles <- c("A New Hope", "The Empire Strikes Back", "Return of the Jedi")
+
+# Đặt tên cho các cột với region
+
+
+# Đặt tên cho các dòng với titles
+
+
+# In ra kết quả của star_wars_matrix
+```
+
+*** =solution
+```{r}
+# Doanh thu vé Star Wars bán ra (theo đơn vị hàng triệu!)
+new_hope <- c(460.998, 314.4)
+empire_strikes <- c(290.475, 247.900)
+return_jedi <- c(309.306, 165.8)
+
+# Xây dựng matrix
+star_wars_matrix <- matrix(c(new_hope, empire_strikes, return_jedi), nrow = 3, byrow = TRUE)
+
+# Lập 2 véc-tơ sẽ được đùng để đặt tên là region and titles
+region <- c("US", "non-US")
+titles <- c("A New Hope", "The Empire Strikes Back", "Return of the Jedi")
+
+# Đặt tên cho các cột với region
+colnames(star_wars_matrix) <- region
+
+# Đặt tên cho các dòng với titles
+rownames(star_wars_matrix) <- titles
+
+# In ra kết quả của star_wars_matrix
+star_wars_matrix
+```
+
+*** =sct
+```{r}
+msg <- "Đừng thay đổi gì trong `new_hope`, `empire_strikes` và `return_jedi`!"
+test_object("new_hope", undefined_msg = msg, incorrect_msg = msg)
+test_object("empire_strikes", undefined_msg = msg, incorrect_msg = msg)
+test_object("return_jedi", undefined_msg = msg, incorrect_msg = msg)
+msg <- "Đừng sửa nội dung của `star_wars_matrix`; mà chỉ đặt tên cho các dòng và cột!" 
+test_object("star_wars_matrix", incorrect_msg = msg)
+msg <- "Đừng thay đổi gì trong hai véc-tơ đã được cho sẵn là `region` và `titles` ."
+test_object("region", undefined_msg = msg, incorrect_msg = msg)
+test_object("titles", undefined_msg = msg, incorrect_msg = msg)
+test_object("star_wars_matrix", eq_condition = "equal",
+            incorrect_msg = "Bạn đã đặt đúng tên cột và dòng cho `star_wars_matrix` chưa? Sử dụng `colnames(star_wars_matrix) <- region` để đặt tên cột; làm điều tương tự với dòng.")
+test_output_contains("star_wars_matrix", incorrect_msg = "Đừng quên in ra kết quả của `star_wars_matrix` sau khi đã đặt tên xong.")
+success_msg("Tuyệt lắm! Bạn sắp thành một Jedi trong lĩnh vực R rồi đấy! Sang bài tập tiếp theo nào.")
+```
+
+
+--- type:NormalExercise xp:100 skills:1 key:3fd7499a12
+## Tính tổng doanh thu vé trên toàn cầu
+Để trờ thành huyền thoại điện ảnh, một bộ phim phải đạt được doanh số bán vé toàn cầu "khủng"
+
+Muốn tính toán lợi nhuận của cả ba bộ phim Star Wars, ta cần phải tính tổng doanh thu chúng đạt được ở cả trong và ngoài Mỹ.
+
+Trong R, hàm [`rowSums()`](http://www.rdocumentation.org/packages/base/functions/colSums) giúp ta dễ dàng tính được tổng của từng dòng trong một ma trận. Để làm được điều đó, hàm này sẽ tạo một véc tơ mới:
+
+```
+rowSums(my_matrix)
+```
+
+*** =instructions
+Tính ra doanh số bán vé của ba bộ phim và chứa kết quả vào một véc-tơ mới tên là `worldwide_vector`.
+
+*** =hint
+`rowSums(star_wars_matrix)` sẽ tính tổng của từng dòng một, cho ra kết quả tổng doanh thu của từng bộ phim.
+
+*** =pre_exercise_code
+```{r}
+# no pec
+```
+
+*** =sample_code
+```{r}
+# Xây dựng ma trận star_wars_matrix
+box_office <- c(460.998, 314.4, 290.475, 247.900, 309.306, 165.8)
+star_wars_matrix <- matrix(box_office, nrow = 3, byrow = TRUE,
+                           dimnames = list(c("A New Hope", "The Empire Strikes Back", "Return of the Jedi"), 
+                                           c("US", "non-US")))
+
+# Tính tổng doanh thu toàn cầu
+worldwide_vector <- 
+```
+
+*** =solution
+```{r}
+# Xây dựng ma trận star_wars_matrix
+box_office <- c(460.998, 314.4, 290.475, 247.900, 309.306, 165.8)
+star_wars_matrix <- matrix(box_office, nrow = 3, byrow = TRUE,
+                           dimnames = list(c("A New Hope", "The Empire Strikes Back", "Return of the Jedi"), 
+                                           c("US", "non-US")))
+
+# Tổng doanh thu toàn cầu
+worldwide_vector <- rowSums(star_wars_matrix)
+```
+
+*** =sct
+```{r}
+msg <- "Đừng sửa nội dung của các biến `box_office_all` và `star_wars_marix`được cho sẵn!"
+test_object("box_office", undefined_msg = msg, incorrect_msg = msg)
+test_object("star_wars_matrix", undefined_msg = msg, incorrect_msg = msg)
+test_object("worldwide_vector", incorrect_msg = "Dùng hàm `rowSums()` với `star_wars_matrix` rồi chứa kết quả vào `worldwide_vector`.")
+success_msg("Làm tốt lắm! Sang bài tập tiếp theo nào.")
+```
+
+
+--- type:NormalExercise xp:100 skills:1 key:86b87a8545
+## Thêm cột thông tin doanh thu vé toàn cầu 
+
+Trong bài tập trước, bạn đã tính ra véc-tơ chứa doanh thu của cả ba bộ phim Star Wars. Nhưng véc-tơ này vẫn chưa được cho vào ma trận `star_wars_matrix`.
+
+Bạn có thể thêm một hoặc nhiều cột vào một ma trận với hàm [`cbind()`](http://www.rdocumentation.org/packages/base/functions/cbind) . Hàm này được sử dụng để ghép các ma trận và véc-tơ với nhau theo cột. Tham khảo ví dụ dưới đây:
+
+```
+big_matrix <- cbind(matrix1, matrix2, vector1 ...)
+```
+
+*** =instructions
+Biến `worldwide_vector` thành một cột mới tron `star_wars_matrix` và gán kết quả cho `all_wars_matrix`. Hãy sử dụng hàm [`cbind()`](http://www.rdocumentation.org/packages/base/functions/cbind) để làm điều này.
+
+*** =hint
+Trong bài tập này, ta phải nhét hai biến là `star_wars_matrix` và `worldwide_vector` vào `cbind()`, theo đúng thứ tự trên. Sau đó gán kết quả cho `all_wars_matrix`.
+
+*** =pre_exercise_code
+```{r}
+# no pec
+```
+
+*** =sample_code
+```{r}
+# Xây dựng ma trận star_wars_matrix
+box_office <- c(460.998, 314.4, 290.475, 247.900, 309.306, 165.8)
+star_wars_matrix <- matrix(box_office, nrow = 3, byrow = TRUE,
+                           dimnames = list(c("A New Hope", "The Empire Strikes Back", "Return of the Jedi"), 
+                                           c("US", "non-US")))
+
+# Tổng doanh thu toàn cầu
+worldwide_vector <- rowSums(star_wars_matrix)
+
+# Dùng biến mới tạo worldwide_vector làm một cột mới của star_wars_matrix
+all_wars_matrix <- 
+```
+
+*** =solution
+```{r}
+# Xây dựng ma trận star_wars_matrix
+box_office <- c(460.998, 314.4, 290.475, 247.900, 309.306, 165.8)
+star_wars_matrix <- matrix(box_office, nrow = 3, byrow = TRUE,
+                           dimnames = list(c("A New Hope", "The Empire Strikes Back", "Return of the Jedi"), 
+                                           c("US", "non-US")))
+
+# Tổng doanh thu toàn cầu
+worldwide_vector <- rowSums(star_wars_matrix)
+
+# Dùng biến mới tạo worldwide_vector làm một cột mới của star_wars_matrix
+all_wars_matrix <- cbind(star_wars_matrix, worldwide_vector)
+```
+
+*** =sct
+```{r}
+msg <- "Đừng thay đổi nội dung của các biến `box_office_all` và `star_wars_marix` đã được cho sẵn!"
+test_object("box_office", undefined_msg = msg, incorrect_msg = msg)
+test_object("star_wars_matrix", undefined_msg = msg, incorrect_msg = msg)
+test_object("worldwide_vector",
+            incorrect_msg = "Chứa kết quả của `rowSums(star_wars_matrix)` vào trong `worldwide_vector`.")
+
+msg <- "Bạn đã sử dụng `cbind()` một cách chính xác để đưa `worldwide_vector` vào `star_wars_matrix`? Bạn phải nhét `star_wars_matrix` và `world_wide_vector` vào hàm `cbind()` theo đúng thứ tự trên. Ma trận đạt được `all_wars_matrix` phải có ba dòng và 3 cột."
+test_object("all_wars_matrix", incorrect_msg = msg)
+success_msg("Làm tốt lắm! Sau khi thêm cột và ma trận thì bước tiếp theo hiển nhiên là thêm dòng. Chúng ta sẽ học cách làm điều đó trong bài tập tiếp theo.");
+```
+
+
+--- type:NormalExercise xp:100 skills:1 key:bcadb29139
+## Thêm dòng
+
+Giống như đã có nhân thì phải có quả, đã có hàm [`cbind()`](http://www.rdocumentation.org/packages/base/functions/cbind) thì phải có hàm [`rbind()`](http://www.rdocumentation.org/packages/base/functions/cbind). (Chúng tôi tự nhận thấy mình rất kém trong khoản ẩn dụ.) 
+
+Miền làm việc (workspace) của bạn trong R, nơi tất cả các biến của bạn đang 'sống', ([tìm hiểu thêm về định nghĩa của workspace tại đây](http://www.statmethods.net/interface/workspace.html)), đã được khởi tạo và đang chứa hai ma trận sau đây:
+
+- Ma trận `star_wars_matrix` là ma trận chúng ta đã sử dụng trong các bài tập vừa rồi, đang chứa thông tin của ba tập phim đầu,
+- Ma trận `star_wars_matrix2`chứa dữ liệu tương tự của ba tập phim tiếp theo.
+
+Gõ tên của các ma trận này trong console để nắm rõ hơn về chúng. Nếu bạn muốn xem nội dung của workspace, bạn cũng có thể gõ lệnh `ls()` vào console.
+
+*** =instructions
+Sử dụng `rbind()` để gộp `star_wars_matrix` và `star_wars_matrix2`, theo thứ tự trên. Gán kết quả vào ma trận `all_wars_matrix`.
+
+*** =hint
+Dùng lệnh dưới đây để gộp hai ma trận với nhau:
+```
+rbind(matrix1, matrix2)
+```
+Gán kết quả vào `all_wars_matrix`.
+
+
+*** =pre_exercise_code
+```{r}
+# Xây dựng ma trận đầu tiên
+box_office_all <- c(461, 314.4, 290.5, 247.9, 309.3, 165.8)
+movie_names <- c("A New Hope","The Empire Strikes Back","Return of the Jedi")
+col_titles <- c("US","non-US")
+star_wars_matrix <- matrix(box_office_all, nrow = 3, byrow = TRUE, dimnames = list(movie_names, col_titles))
+
+# Xây dựng ma trận thứ 2
+box_office_all2 <- c(474.5, 552.5, 310.7, 338.7, 380.3, 468.5)
+movie_names2 <- c("The Phantom Menace", "Attack of the Clones", "Revenge of the Sith")
+star_wars_matrix2 <- matrix(box_office_all2, nrow=3, byrow = TRUE, dimnames = list(movie_names2, col_titles))
+
+# Xóa tất cả dữ liệu, chỉ để lại all_wars_matrix
+rm(box_office_all)
+rm(movie_names)
+rm(col_titles)
+rm(box_office_all2)
+rm(movie_names2)
+```
+
+*** =sample_code
+```{r}
+# Workspace của bạn hiện đang có star_wars_matrix và star_wars_matrix2 
+star_wars_matrix  
+star_wars_matrix2 
+
+# Tổng hợp cả sáu bộ phim Star Wars trong một ma trận
+all_wars_matrix <- 
+```
+
+*** =solution
+```{r}
+# Workspace của bạn hiện đang có star_wars_matrix và star_wars_matrix2 
+star_wars_matrix  
+star_wars_matrix2 
+
+# Tổng hợp cả sáu bộ phim Star Wars trong một ma trận
+all_wars_matrix <- rbind(star_wars_matrix, star_wars_matrix2)
+```
+
+*** =sct
+```{r}
+msg = "Đừng thay đổi nội dung của các biến đã được cho sẵn (`star_wars_matrix` and `star_wars_matrix2`)."
+test_object("star_wars_matrix", eq_condition = "equal", undefined_msg = msg, incorrect_msg = msg)
+test_object("star_wars_matrix2", eq_condition = "equal", undefined_msg = msg, incorrect_msg = msg)
+test_object("all_wars_matrix", incorrect_msg = "Bạn đã sử dụng hàm `rbind()` một cách chính xác để tạo ma trận `all_wars_matrix()`? `rbind()` phải chứa hai tham số là `star_wars_matrix` and `star_wars_matrix2`, theo đúng thứ tự đó.")
+
+success_msg("Tuyệt vời! Ở bài tập tiếp đây bạn sẽ học cách tổng hợp kết quả của hai hàm `rbind()` và `colSums()`!")
+```
+
+
+--- type:NormalExercise xp:100 skills:1 key:1bfe5ae096
+## Tổng doanh thu bán vé của cả bộ sáu tập phim Star Wars
+
+Đã có hàm [`cbind()`](http://www.rdocumentation.org/packages/base/functions/cbind) thì phải có hàm [`rbind()`](http://www.rdocumentation.org/packages/base/functions/cbind), cũng giống như đã có hàm [`colSums()`](http://www.rdocumentation.org/packages/base/functions/colSums) thì phải có hàm [`rowSums()`](http://www.rdocumentation.org/packages/base/functions/colSums). Workspace trong R của bạn đã có sẵn ma trận `all_wars_matrix` là ma trận đã được tạo trong bài tập trước đó; để xem lại nội dung của ma trận này ta gõ `all_wars_matrix`. Đã đến lúc tính tổng doanh thu bán vé của cả bộ sáu tập phim Star Wars.
+
+*** =instructions
+- Tính tổng doanh thu của trong và ngoài Mỹ, rồi gán kết quả đó cho `total_revenue_vector`. Để làm điều đó, ta sử dụng hàm [`colSums()`](http://www.rdocumentation.org/packages/base/functions/colSums).
+- Hiển thị kết quả của `total_revenue_vector`.
+
+*** =hint
+Bạn hãy dùng hàm [`colSums()`](http://www.rdocumentation.org/packages/base/functions/colSums) có tham số là `star_wars_matrix` để tính tổng doanh thu từng vùng.
+
+*** =pre_exercise_code
+```{r}
+load(url("http://s3.amazonaws.com/assets.datacamp.com/course/intro_to_r/all_wars_matrix.RData"))
+```
+
+*** =sample_code
+```{r}
+# all_wars_matrix đã được cho sẵn trong workspace của bạn
+all_wars_matrix
+
+# Tổng doanh thu vé bán ở trong và ngoài Mỹ
+total_revenue_vector <- 
+  
+# Hiển thị kết quả của total_revenue_vector
+```
+
+*** =solution
+```{r}
+# all_wars_matrix đã được cho sẵn trong workspace của bạn
+all_wars_matrix
+
+# Tổng doanh thu vé bán ở trong và ngoài Mỹ
+total_revenue_vector <- colSums(all_wars_matrix)
+
+# Hiển thị kết quả của total_revenue_vector
+total_revenue_vector
+```
+
+*** =sct
+```{r}
+msg = "Đừng thay đổi nội dung của `all_wars_matrix`đã được cho sẵn trong workspace."
+test_object("all_wars_matrix", eq_condition = "equal", undefined_msg = msg, incorrect_msg = msg)
+test_function("colSums", "x", incorrect_msg = "Bạn đã sử dụng hàm `colSums()` để biến đổi ma trận all_wars_matrix?")
+test_object("total_revenue_vector",
+            incorrect_msg = "Bạn đã gán đúng kết quả của câu lệnh `colSums(all_wars_matrix)` cho `total_revenue_vector`?")
+test_output_contains("total_revenue_vector", incorrect_msg = "Nhớ hiển thị kết quả cho `total_revenue_vector`!")
+success_msg("Tốt lắm! Sang bài tập tiếp theo để học cách tạo tập con cho ma trận.")
+```
+
+
+--- type:NormalExercise xp:100 skills:1 key:41d9d69713
+## Chọn lọc các dữ liệu trong ma trận 
+
+Cũng giống như khi làm việc với véc-tơ, ta có thể sử dụng các dấu ngoặc vuông `[ ]` để lọc một hoặc nhiều dữ liệu từ một ma trận. Điểm khác biệt giữa véc-tơ và ma trận là véc-tơ chỉ có một chiều không gian, trong khi ma trận thì có 2 chiều không gian. Vì thế, ta sẽ sử dụng dấu phẩy để phân biệt giữa dữ liệu được chọn theo dòng và dữ liệu được chọn theo cột. Xem các ví dụ sau:
+
+- Câu lệnh `my_matrix[1,2]` sẽ chọn dữ liệu ở dòng thứ nhất và cột thứ hai.
+- Câu lệnh `my_matrix[1:3,2:4]` sẽ cho ra kết quả một ma trận gồm dữ liệu của dòng thứ 1, 2, 3 và cột thứ 2, 3, 4.
+
+Nếu bạn muốn chọn tất cả các dữ liệu của một dòng hoặc một cột, bạn chỉ cần để trống phần phía trước hoặc phía sau dấu phẩy, theo đúng thứ tự trên:
+
+- `my_matrix[,1]` chọn tất cả các dữ liệu thuộc cột thứ nhất.
+- `my_matrix[1,]` chọn tất cả các dữ liệu thuộc dòng thứ nhất.
+
+Chúng ta hãy cùng trở lại với ví dụ Star Wars nhé! Giống với bài tập trước, bạn đã được cho sẵn `all_wars_matrix` trong workspace.
+
+*** =instructions
+- Chọn lọc doanh thu ngoài nước Mỹ của tất cả các bộ phim (đồng nghĩa với lấy toàn bộ cột thứ hai của `all_wars_matrix`), gán kết quả cho  `non_us_all`.
+- Sử dụng lệnh `mean()` cho `non_us_all` để tính doanh thu trung bình ở ngoài Mỹ của tất cả các bộ phim. Sau đó hiển thị kết quả đã tính đc.
+- Tiếp đến, lọc ra doanh thu ngoài nước Mỹ của 2 tập phim đầu tiên trong `all_wars_matrix`. Gán kết quả đó cho `non_us_some`.
+- Sử dụng lệnh `mean()` để tính trung bình các giá trị trong `non_us_some`.
+
+*** =hint
+Để lấy toàn bộ cột thứ hai của một ma trận `my_matrix`, bạn sử dụng `my_matrix[,2]`.
+
+*** =pre_exercise_code
+```{r}
+load(url("http://s3.amazonaws.com/assets.datacamp.com/course/intro_to_r/all_wars_matrix.RData"))
+```
+
+*** =sample_code
+```{r}
+# all_wars_matrix đã được cho sẵn trong workspace của bạn
+all_wars_matrix
+
+# Tìm doanh thu ngoài nước Mỹ của tất cả các bộ phim
+non_us_all <- 
+  
+# Doanh thu trung bình ở ngoài nước Mỹ
+
+  
+# Tìm doanh thu ngoài nước Mỹ của hai bộ phim đầu tiên
+non_us_some <- 
+  
+# Doanh thu trung bình ở ngoài nước Mỹ cho hai bộ phim đầu tiên
+
+```
+
+*** =solution
+```{r}
+# all_wars_matrix đã được cho sẵn trong workspace của bạn
+all_wars_matrix
+
+# Tìm doanh thu ngoài nước Mỹ của tất cả các bộ phim
+non_us_all <- all_wars_matrix[,2]
+  
+# Tìm doanh thu ngoài nước Mỹ của hai bộ phim đầu tiên
+mean(non_us_all)
+  
+# Tìm doanh thu ngoài nước Mỹ của hai bộ phim đầu tiên
+non_us_some <- all_wars_matrix[1:2,2]
+  
+# Doanh thu trung bình ở ngoài nước Mỹ cho hai bộ phim đầu tiên
+mean(non_us_some)
+```
+
+*** =sct
+```{r}
+msg = "Đừng thay đổi nội dung của `all_wars_matrix`đã được cho sẵn trong workspace."
+test_object("all_wars_matrix", undefined_msg = msg, incorrect_msg = msg)
+
+test_object("non_us_all",
+            incorrect_msg = "Bạn đã gán cho `non_us_all` dữ liệu của cả cột thứ hai của `all_wars_matrix`? Để làm điều đó bạn dùng `[, 2]`")
+test_output_contains("mean(non_us_all)",
+                     incorrect_msg = "Bạn đã tính giá trị trung bình của các giá trị trong `non_us_all` bằng cách dùng hàm `mean(non_us_all)` chưa? Nhớ hiển thị ra kết quả cuối cùng nhé.")
+test_object("non_us_some",
+            incorrect_msg = "Bạn đã gán doanh thu ngoài nước Mỹ của hai bộ phim đầu tiên cho `non_us_some` chưa? Để làm điều đó bạn dùng `[1:2,2]`")
+test_output_contains("mean(non_us_some)",
+                     incorrect_msg = "Bạn đã tính trung bình của các giá trị trong `non_us_some` bằng `mean(non_us_some)`? Nhớ hiển thị ra kết quả cuối cùng nhé.")
+success_msg("Tuyệt vời! Cùng sang bài tập tiếp theo nhé.")
+```
+
+
+--- type:NormalExercise xp:100 skills:1 key:c81c656f06
+## Cách làm phép tính trong ma trận
+
+Tương tự như những gì bạn đã học về véc-tơ, các dấu tính `+`, `-`, `/`, `*`, etc. cũng được áp dụng để tính toán theo từng yếu tố một trong R. 
+
+Ví dụ, `2 * my_matrix` sẽ nhân từng yếu tố trong  `my_matrix` với số 2.
+
+Với vai trò là một chuyên viên phân tích dữ liệu mới của Lucasfilm, bạn được giao trách nhiệm tính số lượng người đi xem phim của từng bộ phim tại từng vùng địa lý. Bạn đã có số liệu về tổng doanh thu trong ma trận `all_wars_matrix`. Giả định giá vé là 5 đô-la-Mỹ cho một vé. Bạn hãy chia doanh thu cho giá vé để tính số lượng người đi xem phim.
+
+*** =instructions
+- Chia `all_wars_matrix` cho 5, bạn sẽ nhận được số lượng người đi xem phim theo đơn vị hàng triệu. Gán ma trận đạt được cho `visitors`.
+- Hiển thị kết quả cho `visitors`.
+
+*** =hint
+Số lượng người đi xem phim bằng `all_wars_matrix` chia cho 5.
+
+*** =pre_exercise_code
+```{r}
+load(url("http://s3.amazonaws.com/assets.datacamp.com/course/intro_to_r/all_wars_matrix.RData"))
+``` 
+
+*** =sample_code
+```{r}
+# all_wars_matrix đã được cho sẵn trong workspace của bạn
+all_wars_matrix
+
+# Tính số lượng người đi xem phim
+visitors <- 
+  
+# Hiển thị kết quả lên console
+
+```
+
+*** =solution
+```{r}
+# all_wars_matrix đã được cho sẵn trong workspace của bạn
+all_wars_matrix
+
+# Tính số lượng người đi xem phim
+visitors <- all_wars_matrix / 5
+
+# Hiển thị kết quả lên console
+visitors
+```
+
+*** =sct
+```{r}
+msg = "Đừng thay đổi nội dung của `all_wars_matrix`đã được cho sẵn trong workspace."
+test_object("all_wars_matrix", undefined_msg = msg, incorrect_msg = msg)
+
+test_object("visitors",
+            incorrect_msg = "Hình như kết quả của `visitors` là chưa chính xác. Bạn chỉ cần chia `all_wars_matrix` cho 5 và gán kết quả đó cho `visitors`.")
+test_output_contains("visitors", incorrect_msg = "Đừng quên hiển thị kết quả cho `visitors`.")
+success_msg("Tuyệt lắm! Bạn đọc được gì từ kết quả ở trên? Có tận 92 triệu người đã đi xem phim A New Hope tại các rạp chiếu phim ở Mỹ! Cùng sang bài tập tiếp theo nhé.")
+```
+
+
+--- type:NormalExercise xp:100 skills:1 key:1e0b39d6e9
+## Cách làm phép tính trong ma trận (2) 
+
+Nếu như phép tính `2 * my_matrix` giúp ta nhân từng yếu tố trong `my_matrix` cho 2, `my_matrix1 * my_matrix2` sẽ tạo ra một ma trận trong đó mỗi yếu tố là tích của từng yếu tố tương tự trong `my_matrix1` và `my_matrix2`. 
+
+Sau khi đọc kết quả của bài tập vừa rồi, sếp tổng Lucas chỉ ra việc giá vé có tăng qua từng thời kỳ. Sếp ra chỉ thị làm lại bản phân tích này dựa vào giá vé trong ma trận `ticket_prices_matrix` (nguồn: imagination).
+
+_Bạn nên nhớ rằng đây không phải là một phép tính nhân ma trận thuần túy. Nếu muốn tính nhân trong ma trận trong R bạn phải sử dụng dấu `%*%`._
+
+*** =instructions
+- Chia `all_wars_matrix` cho `ticket_prices_matrix` để tính số lượng người xem phim ở trong và ngoài nước Mỹ của sáu bộ phim. Gán kết quả cho `visitors`.
+- Từ ma trận `visitors`, hãy chọn cả cột đầu tiên, tức là cột số lượng người đi xem phim tại Mỹ. Gán kết quả này cho `us_visitors`.
+- Tính số lượng người đi xem phim trung bình tại Mỹ; sau đó hiển thị kết quả.
+
+*** =hint
+- Bạn có thể dùng hàm `mean()` để tính bình quân các giá trị.
+- Muốn lấy số người xem phim tại Mỹ, chọn cột đầu tiên của `visitors` với `visitors[ ,1]`.
+
+*** =pre_exercise_code
+```{r}
+load(url("http://s3.amazonaws.com/assets.datacamp.com/course/intro_to_r/all_wars_matrix.RData"))
+movie_names <- c("A New Hope","The Empire Strikes Back","Return of the Jedi", "The Phantom Menace", "Attack of the Clones", "Revenge of the Sith")
+col_titles <- c("US","non-US")
+ticket_prices_matrix <- matrix(c(5, 5, 6, 6, 7, 7, 4, 4, 4.5, 4.5, 4.9, 4.9), nrow = 6, byrow = TRUE, dimnames = list(movie_names,col_titles))
+```
+
+*** =sample_code
+```{r}
+# Các ma trận all_wars_matrix và ticket_prices_matrix đã được cho sẵn
+all_wars_matrix
+ticket_prices_matrix
+
+# Số lượng người xem phim
+visitors <- 
+
+# Số lượng người xem phim tại Mỹ
+us_visitors <- 
+
+# Bình quân số lượng người xem phim tại Mỹ
+
+```
+
+*** =solution
+```{r}
+# Các ma trận all_wars_matrix và ticket_prices_matrix đã được cho sẵn
+all_wars_matrix
+ticket_prices_matrix
+
+# Số lượng người xem phim
+visitors <- all_wars_matrix / ticket_prices_matrix
+
+# Số lượng người xem phim tại Mỹ
+us_visitors <- visitors[ ,1]
+
+# Bình quân số lượng người xem phim tại Mỹ
+mean(us_visitors)
+```
+
+*** =sct
+```{r}
+msg <- "Đừng thay đổi nội dung của `all_wars_matrix`đã được cho sẵn trong workspace."
+test_object("all_wars_matrix", undefined_msg = msg, incorrect_msg = msg)
+test_object("ticket_prices_matrix", undefined_msg = msg, incorrect_msg = msg)
+
+test_object("visitors",
+            incorrect_msg = "Bạn đã tạo chính xác ma trận `visitors` matrix? Bạn chỉ cần chia `all_wars_matrix` cho `ticket_prices_matrix`.")
+test_object("us_visitors", incorrect_msg = "Để tạo `us_visitors`, bạn phải chọn tất cả dữ liệu của cột đầu tiên trong `visitors`. Để làm được điều đó hãy dùng `[,1]`!")
+test_output_contains("mean(us_visitors)", incorrect_msg = "Sau khi bạn đã tạo `us_visitors`, hãy dùng `mean()` để tính số lượng người xem phim tại Mỹ. Hãy nhớ hiển thị kết quả tính được.")
+
+success_msg("Chắc chắn bạn được các thế lực R phù trợ rồi! Chương về ma trận đến đây là kết thúc. Tại chương tiếp theo bạn sẽ được tiếp xúc với một định nghĩa khác trong ngôn ngữ R, đó là factor.")
+```
+
+
